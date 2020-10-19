@@ -10,7 +10,7 @@ namespace ISys.Application.Interfaces
         void Register(ReservationViewModel ReservationViewModel);
         IEnumerable<ReservationViewModel> GetAll();
         IEnumerable<ReservationViewModel> GetAllByRoom(Guid roomId);
-        IEnumerable<ReservationViewModel> GetReservationActive(Guid roomId, DateTime dateInitial, DateTime dateFinal);
+        IEnumerable<ReservationViewModel> GetAvailability(AvailabilityViewModel availabilityViewModel);
         ReservationViewModel GetById(Guid id);
         void Update(ReservationViewModel ReservationViewModel);
         void Remove(Guid id);

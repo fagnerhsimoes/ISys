@@ -48,9 +48,9 @@ namespace ISys.Application.Services
             return Reservation;
         }
 
-        public IEnumerable<ReservationViewModel> GetReservationActive(Guid roomId, DateTime dateInitial, DateTime dateFinal)
+        public IEnumerable<ReservationViewModel> GetAvailability(AvailabilityViewModel availabilityViewModel)
         {
-            var exp = ReservationQueries.CheckAvailability(roomId, dateInitial, dateFinal);
+            var exp = ReservationQueries.CheckAvailability(availabilityViewModel);
 
             var Reservation = _Reservations.AsQueryable().Where(exp).ToList();
 

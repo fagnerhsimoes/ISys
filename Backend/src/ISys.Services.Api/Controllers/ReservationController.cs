@@ -24,21 +24,21 @@ namespace ISys.Services.Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("v1/Reservation")]
+        [HttpGet("v1/reservation")]
         public IActionResult Get()
         {
             return Response(_ReservationAppService.GetAll());
         }
 
         [AllowAnonymous]
-        [HttpGet("v1/Reservation/Room/{id:guid}")]
+        [HttpGet("v1/reservation/room/{id:guid}")]
         public IActionResult GetReservations(Guid id)
         {
             return Response(_ReservationAppService.GetAllByRoom(id));
         }
 
         [AllowAnonymous]
-        [HttpGet("v1/Reservation/{id:guid}")]
+        [HttpGet("v1/reservation/{id:guid}")]
         public IActionResult Get(Guid id)
         {
             var ReservationViewModel = _ReservationAppService.GetById(id);
@@ -47,7 +47,24 @@ namespace ISys.Services.Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("v1/Reservation")]
+        [HttpGet("v1/reservation/availability")]
+        public IActionResult Availability([FromBody] AvailabilityViewModel AvailabilityViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                NotifyModelStateErrors();
+                return Response(AvailabilityViewModel);
+            }
+
+            //_ReservationAppService.Register(ReservationViewModel);
+
+            //return Response(ReservationViewModel);
+
+            return Response(_ReservationAppService.GetAvailability(AvailabilityViewModel));
+        }
+
+        [AllowAnonymous]
+        [HttpPost("v1/reservation")]
         public IActionResult Post([FromBody] ReservationViewModel ReservationViewModel)
         {
             if (!ModelState.IsValid)
@@ -62,22 +79,7 @@ namespace ISys.Services.Api.Controllers
         }
 
         [Authorize(Policy = "CanWriteReservationData")]
-        [HttpPost("v1/Reservation")]
-        public IActionResult Post([FromBody] ReservationViewModel ReservationViewModel)
-        {
-            if (!ModelState.IsValid)
-            {
-                NotifyModelStateErrors();
-                return Response(ReservationViewModel);
-            }
-
-            _ReservationAppService.Register(ReservationViewModel);
-
-            return Response(ReservationViewModel);
-        }
-
-        [Authorize(Policy = "CanWriteReservationData")]
-        [HttpPut("v1/Reservation/{id:guid}")]
+        [HttpPut("v1/reservation/{id:guid}")]
         public IActionResult Put([FromBody] ReservationViewModel ReservationViewModel)
         {
             if (!ModelState.IsValid)
@@ -92,7 +94,7 @@ namespace ISys.Services.Api.Controllers
         }
 
         //[Authorize(Policy = "CanRemoveReservationData")]
-        [HttpDelete("v1/Reservation/{id:guid}")]
+        [HttpDelete("v1/reservation/{id:guid}")]
         public IActionResult Delete(Guid id)
         {
             _ReservationAppService.Remove(id);
@@ -101,7 +103,7 @@ namespace ISys.Services.Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("v1/Reservation/history/{id:guid}")]
+        [HttpGet("v1/reservation/history/{id:guid}")]
         public IActionResult History(Guid id)
         {
             var ReservationHistoryData = _ReservationAppService.GetAllHistory(id);

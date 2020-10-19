@@ -6,7 +6,6 @@ namespace ISys.Domain.Validations
     {
         public UpdateRoomCommandValidation()
         {
-            ValidateId();
             ValidateDescription();
         }
     }

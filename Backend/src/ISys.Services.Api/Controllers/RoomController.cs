@@ -28,14 +28,14 @@ namespace ISys.Services.Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("v1/Room")]
+        [HttpGet("v1/room")]
         public IActionResult Get()
         {
             return Response(_RoomAppService.GetAll());
         }
 
         [AllowAnonymous]
-        [HttpGet("v1/Room/{id:guid}")]
+        [HttpGet("v1/room/{id:guid}")]
         public IActionResult Get(Guid id)
         {
             var RoomViewModel = _RoomAppService.GetById(id);
@@ -44,7 +44,7 @@ namespace ISys.Services.Api.Controllers
         }
 
         [Authorize(Policy = "CanWriteRoomData")]
-        [HttpPost("v1/Room")]
+        [HttpPost("v1/room")]
         public IActionResult Post([FromBody] RoomViewModel RoomViewModel)
         {
             if (!ModelState.IsValid)
@@ -59,7 +59,7 @@ namespace ISys.Services.Api.Controllers
         }
 
         [Authorize(Policy = "CanWriteRoomData")]
-        [HttpPut("v1/Room/{id:guid}")]
+        [HttpPut("v1/room/{id:guid}")]
         public IActionResult Put([FromBody] RoomViewModel RoomViewModel)
         {
             if (!ModelState.IsValid)
@@ -74,7 +74,7 @@ namespace ISys.Services.Api.Controllers
         }
 
         //[Authorize(Policy = "CanRemoveRoomData")]
-        [HttpDelete("v1/Room/{id:guid}")]
+        [HttpDelete("v1/room/{id:guid}")]
         public IActionResult Delete(Guid id)
         {
 
@@ -91,7 +91,7 @@ namespace ISys.Services.Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("v1/Room/history/{id:guid}")]
+        [HttpGet("v1/room/history/{id:guid}")]
         public IActionResult History(Guid id)
         {
             var RoomHistoryData = _RoomAppService.GetAllHistory(id);
