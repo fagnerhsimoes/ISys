@@ -1,0 +1,27 @@
+.tournamentform {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px 0px 0x 0px;
+}
+
+
+.tournamentform .Btns  {
+    margin-top: 0px;
+    margin-left: -4px;
+    margin-bottom: 60px;
+}
+
+
+.tournamentform .Btns button {
+    width: 150px;
+    height: 34px;  
+    margin-left: 5px;
+}
+
+.tournamentform table tbody tr td {
+    text-align: left;
+    vertical-align: initial;
+  }
+
+
+  

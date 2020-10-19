@@ -1,0 +1,30 @@
+@model ISys.Application.ViewModels.RoomViewModel
+
+@{
+    ViewData["Title"] = "Delete Room";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Delete">
+    <vc:summary />
+
+    <h3>Are you sure you want to delete the @Model.Description?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+        </dl>
+
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-info">Back to List</a>
+        </div>
+    </div>
+</form>

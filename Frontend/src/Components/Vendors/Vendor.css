@@ -1,0 +1,34 @@
+.vendorform {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px 0px 0x 0px;
+}
+
+.vendorform input {
+    margin-left: 2px;
+    margin-right: 0px;
+    padding: 0px 0px 0px 10px;
+}
+
+.vendorform a {
+    margin-top: 10px;
+    margin-bottom: 16px;
+    margin-left: 19px;
+    width: 150px;
+    height: 34px;
+}
+
+.Btns  {
+    margin-top: 20px;
+    margin-left: -15px;
+    
+}
+
+.Btns a {
+    width: 150px;
+    height: 34px;  
+    margin-left: 15px;  
+}
+
+
+
