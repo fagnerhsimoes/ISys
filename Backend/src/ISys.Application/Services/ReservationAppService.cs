@@ -21,17 +21,20 @@ namespace ISys.Application.Services
         private readonly IEventStoreRepository _eventStoreRepository;
         private readonly IMediatorHandler Bus;
         private IEnumerable<ReservationViewModel> _Reservations;
+        private readonly IRoomAppService _roomAppService;
 
         public ReservationAppService(IMapper mapper,
                                   IReservationRepository ReservationRepository,
                                   IMediatorHandler bus,
-                                  IEventStoreRepository eventStoreRepository)
+                                  IEventStoreRepository eventStoreRepository,
+                                  IRoomAppService RoomAppService)
         {
             _mapper = mapper;
             _ReservationRepository = ReservationRepository;
             Bus = bus;
             _eventStoreRepository = eventStoreRepository;
             _Reservations = this.GetAll();
+            _roomAppService = RoomAppService;
         }
 
         public IEnumerable<ReservationViewModel> GetAll()
@@ -42,28 +45,43 @@ namespace ISys.Application.Services
         public IEnumerable<ReservationViewModel> GetAllByRoom(Guid roomId)
         {
             var exp = ReservationQueries.GetReservationsByRoom(roomId);
-
             var Reservation = _Reservations.AsQueryable().Where(exp).ToList();
-
-            return Reservation;
-        }
-
-        public IEnumerable<ReservationViewModel> GetAvailability(AvailabilityViewModel availabilityViewModel)
-        {
-            var exp = RoomQueries.GetAvailability(availabilityViewModel);
-
-            var Reservation = _Reservations.AsQueryable().Where(exp).ToList();
-
             return Reservation;
         }
 
         public IEnumerable<ReservationViewModel> GetRoomAvailability(ReservationViewModel reservationViewModel)
         {
             var exp = RoomQueries.GetAvailabilityByRoom(reservationViewModel);
-
             var Reservation = _Reservations.AsQueryable().Where(exp).ToList();
-
             return Reservation;
+        }
+
+        public IEnumerable<RoomViewModel> GetAvailability(AvailabilityViewModel availabilityViewModel, bool check)
+        {
+            var exp = ReservationQueries.GetNotAvailability(availabilityViewModel);
+            var Reservations = _Reservations.AsQueryable().Where(exp).ToList();
+
+            if (check)
+            {
+                var Rooms = _roomAppService.GetAll().ToList();
+                foreach (var reservation in Reservations.GroupBy(r => r.RoomId))
+                {
+                    var room = _roomAppService.GetById(reservation.Key);
+                    Rooms.RemoveAll(x => x.Id == room.Id);
+                }
+
+                return Rooms;
+            }
+            else
+            {
+                var Rooms = new List<RoomViewModel>();
+                foreach (var reservation in Reservations.GroupBy(r => r.RoomId))
+                {
+                    Rooms.Add(_roomAppService.GetById(reservation.Key));
+                }
+
+                return Rooms;
+            }
         }
 
         public ReservationViewModel GetById(Guid id)

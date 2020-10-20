@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using ISys.Application.Interfaces;
 using ISys.Application.ViewModels;
@@ -43,8 +44,20 @@ namespace ISys.Services.Api.Controllers
         public IActionResult Get(Guid id)
         {
             var ReservationViewModel = _ReservationAppService.GetById(id);
-
             return Response(ReservationViewModel);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("v1/room/availability/{check:bool}")]
+        public IActionResult Availability([FromBody] AvailabilityViewModel availabilityViewModel, bool check)
+        {
+            if (!ModelState.IsValid)
+            {
+                NotifyModelStateErrors();
+                return Response(availabilityViewModel);
+            }
+
+            return Response(_ReservationAppService.GetAvailability(availabilityViewModel, check));
         }
 
         [AllowAnonymous]
@@ -58,23 +71,27 @@ namespace ISys.Services.Api.Controllers
             }
 
             var roomIsReservation = _ReservationAppService.GetRoomAvailability(ReservationViewModel);
-            ReservationViewModel _reservationViewModel = roomIsReservation.FirstOrDefault();
             if (roomIsReservation.Count() > 0)
             {
-                DateTime horaInicial;
-                DateTime horaFinal;
-                if (_reservationViewModel.DateInitial > ReservationViewModel.DateInitial)
-                    horaInicial = _reservationViewModel.DateInitial;
-                else horaInicial = ReservationViewModel.DateInitial;
-                if (_reservationViewModel.DateFinal < ReservationViewModel.DateFinal)
-                    horaFinal = _reservationViewModel.DateFinal;
-                else horaFinal = ReservationViewModel.DateFinal;
+                List<string> conflicts = new List<string>();
+                DateTime     horaInicial;
+                DateTime     horaFinal;
+                foreach (var reservation in roomIsReservation.OrderBy(p => p.DateInitial))
+                {
+                    if (reservation.DateInitial > ReservationViewModel.DateInitial)
+                        horaInicial = reservation.DateInitial;
+                    else horaInicial = ReservationViewModel.DateInitial;
+                    if (reservation.DateFinal < ReservationViewModel.DateFinal)
+                        horaFinal = reservation.DateFinal;
+                    else horaFinal = ReservationViewModel.DateFinal;
 
-                return BadRequest("Não foi possivel realizar a reserva! Já existe a reserva para esta sala de Título: " + _reservationViewModel.Title + " no período de " + horaInicial + " até as " + horaFinal + ".");
+                    conflicts.Add("Sala reservada no período de " + horaInicial + " até as " + horaFinal + ".");
+                }
+
+                return BadRequest("Não foi possivel realizar a reserva! \n" + string.Join("\n", conflicts));
             }
 
             _ReservationAppService.Register(ReservationViewModel);
-
             return Response(ReservationViewModel);
         }
 
@@ -89,7 +106,6 @@ namespace ISys.Services.Api.Controllers
             }
 
             _ReservationAppService.Update(ReservationViewModel);
-
             return Response(ReservationViewModel);
         }
 
@@ -98,7 +114,6 @@ namespace ISys.Services.Api.Controllers
         public IActionResult Delete(Guid id)
         {
             _ReservationAppService.Remove(id);
-
             return Response();
         }
 

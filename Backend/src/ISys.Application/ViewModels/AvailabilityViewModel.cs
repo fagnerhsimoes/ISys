@@ -11,15 +11,15 @@ namespace ISys.Application.ViewModels
     public class AvailabilityViewModel
     {
         
-        [Required(ErrorMessage = "The DateInitial is Required")]
+        [Required(ErrorMessage = "A Data Inicial é Obrigatória")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd hh:mm:ss}")]
-        [DataType(DataType.DateTime, ErrorMessage = "Data em formato inválido")]
+        [DataType(DataType.DateTime, ErrorMessage = "Data e Hora em formato inválido")]
         [DisplayName("DateInitial")]
         public DateTime DateInitial { get; set; }
 
-        [Required(ErrorMessage = "The DateFinal is Required")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
+        [Required(ErrorMessage = "A Data Final é Obrigatória")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd hh:mm:ss}")]
+        [DataType(DataType.Date, ErrorMessage = "Data e hora em formato inválido")]
         [DisplayName("DateFinal")]
         public DateTime DateFinal { get; set; }
     }

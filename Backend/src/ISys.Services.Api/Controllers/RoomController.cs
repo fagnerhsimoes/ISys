@@ -39,34 +39,7 @@ namespace ISys.Services.Api.Controllers
         public IActionResult Get(Guid id)
         {
             var RoomViewModel = _RoomAppService.GetById(id);
-
             return Response(RoomViewModel);
-        }
-
-        [AllowAnonymous]
-        [HttpGet("v1/rooms/availability")]
-        public IActionResult Availability([FromBody] AvailabilityViewModel availabilityViewModel)
-        {
-            if (!ModelState.IsValid)
-            {
-                NotifyModelStateErrors();
-                return Response(availabilityViewModel);
-            }
-
-            return Response(_ReservationAppService.GetAvailability(availabilityViewModel));
-        }
-
-        [AllowAnonymous]
-        [HttpGet("v1/room/availability/")]
-        public IActionResult RoomAvailability([FromBody] ReservationViewModel reservationViewModel)
-        {
-            if (!ModelState.IsValid)
-            {
-                NotifyModelStateErrors();
-                return Response(reservationViewModel);
-            }
-
-            return Response(_ReservationAppService.GetRoomAvailability(reservationViewModel));
         }
 
         [Authorize(Policy = "CanWriteRoomData")]
@@ -80,7 +53,6 @@ namespace ISys.Services.Api.Controllers
             }
 
             _RoomAppService.Register(RoomViewModel);
-
             return Response(RoomViewModel);
         }
 
@@ -95,7 +67,6 @@ namespace ISys.Services.Api.Controllers
             }
 
             _RoomAppService.Update(RoomViewModel);
-
             return Response(RoomViewModel);
         }
 
@@ -109,7 +80,6 @@ namespace ISys.Services.Api.Controllers
             }
 
             _RoomAppService.Remove(id);
-
             return Response();
         }
 

@@ -10,5 +10,12 @@ namespace ISys.Application.Queries
         {
             return x => x.RoomId == roomId;
         }
+
+        public static Expression<Func<ReservationViewModel, bool>> GetNotAvailability(AvailabilityViewModel availabilityViewModel)
+        {
+            return x => ((x.DateInitial < availabilityViewModel.DateInitial && x.DateFinal > availabilityViewModel.DateFinal)
+                      || (availabilityViewModel.DateInitial > x.DateInitial && availabilityViewModel.DateInitial < x.DateFinal)
+                      || (availabilityViewModel.DateFinal   > x.DateInitial && availabilityViewModel.DateInitial < x.DateFinal));
+        }
     }
 }

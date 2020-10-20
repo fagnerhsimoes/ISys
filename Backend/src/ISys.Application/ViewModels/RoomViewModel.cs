@@ -1,8 +1,7 @@
-﻿using ISys.Domain.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+
 
 namespace ISys.Application.ViewModels
 {
@@ -16,10 +15,6 @@ namespace ISys.Application.ViewModels
         [MaxLength(100)]
         [DisplayName("Description")]
         public string Description { get; set; }
-
-        public virtual Reservation Reservation { get; set; }
-
-        public IList<ReservationViewModel> Reservations { get; set; }
 
     }
 }
