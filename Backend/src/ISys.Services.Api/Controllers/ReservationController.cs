@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using ISys.Application.Interfaces;
 using ISys.Application.ViewModels;
 using ISys.Domain.Core.Bus;
@@ -47,23 +48,6 @@ namespace ISys.Services.Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("v1/reservation/availability")]
-        public IActionResult Availability([FromBody] AvailabilityViewModel AvailabilityViewModel)
-        {
-            if (!ModelState.IsValid)
-            {
-                NotifyModelStateErrors();
-                return Response(AvailabilityViewModel);
-            }
-
-            //_ReservationAppService.Register(ReservationViewModel);
-
-            //return Response(ReservationViewModel);
-
-            return Response(_ReservationAppService.GetAvailability(AvailabilityViewModel));
-        }
-
-        [AllowAnonymous]
         [HttpPost("v1/reservation")]
         public IActionResult Post([FromBody] ReservationViewModel ReservationViewModel)
         {
@@ -71,6 +55,22 @@ namespace ISys.Services.Api.Controllers
             {
                 NotifyModelStateErrors();
                 return Response(ReservationViewModel);
+            }
+
+            var roomIsReservation = _ReservationAppService.GetRoomAvailability(ReservationViewModel);
+            ReservationViewModel _reservationViewModel = roomIsReservation.FirstOrDefault();
+            if (roomIsReservation.Count() > 0)
+            {
+                DateTime horaInicial;
+                DateTime horaFinal;
+                if (_reservationViewModel.DateInitial > ReservationViewModel.DateInitial)
+                    horaInicial = _reservationViewModel.DateInitial;
+                else horaInicial = ReservationViewModel.DateInitial;
+                if (_reservationViewModel.DateFinal < ReservationViewModel.DateFinal)
+                    horaFinal = _reservationViewModel.DateFinal;
+                else horaFinal = ReservationViewModel.DateFinal;
+
+                return BadRequest("Não foi possivel realizar a reserva! Já existe a reserva para esta sala de Título: " + _reservationViewModel.Title + " no período de " + horaInicial + " até as " + horaFinal + ".");
             }
 
             _ReservationAppService.Register(ReservationViewModel);

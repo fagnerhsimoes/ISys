@@ -50,7 +50,16 @@ namespace ISys.Application.Services
 
         public IEnumerable<ReservationViewModel> GetAvailability(AvailabilityViewModel availabilityViewModel)
         {
-            var exp = ReservationQueries.CheckAvailability(availabilityViewModel);
+            var exp = RoomQueries.GetAvailability(availabilityViewModel);
+
+            var Reservation = _Reservations.AsQueryable().Where(exp).ToList();
+
+            return Reservation;
+        }
+
+        public IEnumerable<ReservationViewModel> GetRoomAvailability(ReservationViewModel reservationViewModel)
+        {
+            var exp = RoomQueries.GetAvailabilityByRoom(reservationViewModel);
 
             var Reservation = _Reservations.AsQueryable().Where(exp).ToList();
 

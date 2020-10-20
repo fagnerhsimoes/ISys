@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using ISys.Application.EventSourcedNormalizers;
 using ISys.Application.Interfaces;
+using ISys.Application.Queries;
 using ISys.Application.ViewModels;
 using ISys.Domain.Commands;
 using ISys.Domain.Core.Bus;

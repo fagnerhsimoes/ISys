@@ -43,6 +43,32 @@ namespace ISys.Services.Api.Controllers
             return Response(RoomViewModel);
         }
 
+        [AllowAnonymous]
+        [HttpGet("v1/rooms/availability")]
+        public IActionResult Availability([FromBody] AvailabilityViewModel availabilityViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                NotifyModelStateErrors();
+                return Response(availabilityViewModel);
+            }
+
+            return Response(_ReservationAppService.GetAvailability(availabilityViewModel));
+        }
+
+        [AllowAnonymous]
+        [HttpGet("v1/room/availability/")]
+        public IActionResult RoomAvailability([FromBody] ReservationViewModel reservationViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                NotifyModelStateErrors();
+                return Response(reservationViewModel);
+            }
+
+            return Response(_ReservationAppService.GetRoomAvailability(reservationViewModel));
+        }
+
         [Authorize(Policy = "CanWriteRoomData")]
         [HttpPost("v1/room")]
         public IActionResult Post([FromBody] RoomViewModel RoomViewModel)
@@ -77,10 +103,7 @@ namespace ISys.Services.Api.Controllers
         [HttpDelete("v1/room/{id:guid}")]
         public IActionResult Delete(Guid id)
         {
-
-            var reservation =  _ReservationAppService.GetAllByRoom(id);
-            int numberreservations = reservation.Count();
-            if (numberreservations > 0)
+            if (_ReservationAppService.GetAllByRoom(id).Count() > 0)
             {
                 return BadRequest("Existe Reserva Agendada para esta Sala. Não será possível excluir a Sala.");
             }
