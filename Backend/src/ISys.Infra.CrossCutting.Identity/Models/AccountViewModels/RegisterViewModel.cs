@@ -17,7 +17,7 @@ namespace ISys.Infra.CrossCutting.Identity.Models.AccountViewModels
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Confirmar senha")]
         [Compare("Password", ErrorMessage = "As senhas devem corresponder.")]
         public string ConfirmPassword { get; set; }
     }

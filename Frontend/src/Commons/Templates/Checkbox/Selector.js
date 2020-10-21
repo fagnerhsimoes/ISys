@@ -32,7 +32,7 @@ export default function Selector({input , label, placeholder, data, meta: { touc
             {data.map((r) => (
                 <MenuItem className={classes.menu} value={r.id}
                             key={r.id}>
-                             {r.title}
+                             {r.description}
                 </MenuItem>
               ))}
           </Select>

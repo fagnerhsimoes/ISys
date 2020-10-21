@@ -13,7 +13,7 @@ namespace ISys.Infra.CrossCutting.Identity.Models.ManageViewModels
         public string Email { get; set; }
 
         [Phone]
-        [Display(Name = "Phone number")]
+        [Display(Name = "Número do Telefone")]
         public string PhoneNumber { get; set; }
 
         public string StatusMessage { get; set; }

@@ -40,7 +40,7 @@ namespace ISys.Domain.CommandHandlers
 
             if (_RoomRepository.GetByDescription(Room.Description) != null)
             {
-                Bus.RaiseEvent(new DomainNotification(message.MessageType, "The Room Description has already been taken."));
+                Bus.RaiseEvent(new DomainNotification(message.MessageType, "Já existe uma Sala com esta Descrição."));
                 return Task.FromResult(false);
             }
             
@@ -69,7 +69,7 @@ namespace ISys.Domain.CommandHandlers
             {
                 if (!existingRoom.Equals(Room))
                 {
-                    Bus.RaiseEvent(new DomainNotification(message.MessageType, "The Room Description has already been taken."));
+                    Bus.RaiseEvent(new DomainNotification(message.MessageType, "Já existe uma Sala com esta Descrição."));
                     return Task.FromResult(false);
                 }
             }

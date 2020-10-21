@@ -40,7 +40,7 @@ namespace ISys.Domain.CommandHandlers
 
             if (_reservationRepository.GetByTitle(reservation.Title) != null)
             {
-                Bus.RaiseEvent(new DomainNotification(message.MessageType, "The reservation e-mail has already been taken."));
+                Bus.RaiseEvent(new DomainNotification(message.MessageType, "Já existe uma Reserva com este Título."));
                 return Task.FromResult(false);
             }
 
@@ -69,7 +69,7 @@ namespace ISys.Domain.CommandHandlers
             {
                 if (!existingReservation.Equals(reservation))
                 {
-                    Bus.RaiseEvent(new DomainNotification(message.MessageType, "The reservation e-mail has already been taken."));
+                    Bus.RaiseEvent(new DomainNotification(message.MessageType, "Já existe uma Reserva com este Título."));
                     return Task.FromResult(false);
                 }
             }

@@ -9,8 +9,8 @@ namespace ISys.Domain.Validations
         protected void ValidateDescription()
         {
             RuleFor(c => c.Description)
-                .NotEmpty().WithMessage("Certifique-se de ter inserido a descrição")
-                .Length(2, 150).WithMessage("A descrição deve ter entre 2 e 150 caracteres");
+                .NotEmpty().WithMessage("Por Favor, Informe e Descrição")
+                .Length(3, 100).WithMessage("A descrição deve ter entre 3 e 150 caracteres");
         }
 
 

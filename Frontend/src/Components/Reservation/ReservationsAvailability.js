@@ -1,4 +1,4 @@
-import './TournamentResult.css';
+import './ReservationsAvailability.css';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { userService } from '../../Services/Index';
@@ -9,11 +9,11 @@ import Layout from '../../Commons/Templates/Layout/Layout';
 import Main from '../../Commons/Templates/Main/Main';
 import Button from '@material-ui/core/Button';
 
-export default class TournamentResult extends Component {
-    displayName = TournamentResult.name
+export default class ReservationsAvailability extends Component {
+    displayName = ReservationsAvailability.name
     constructor(props) {
         super(props);
-        this.state = { movies: [], loading: true };
+        this.state = { rooms: []};
     }
     componentDidMount = () => {
         const { id } = this.props.match.params;
@@ -23,44 +23,39 @@ export default class TournamentResult extends Component {
     }
 
     LoadResult = async (id) => {
-        let apiEndpoint = baseUrlCore + '/v1/tournament/result/' + id;
+        let apiEndpoint = baseUrlCore + '/v1/room/availability/true';
         await userService.get(apiEndpoint)
             .then((response) => {
                 console.log(response);
                 const { data } = response;
-                this.setState({ movies: data, loading: false });
+                this.setState({ rooms: data});
             }).catch((err) => {
                 console.log("Error");
                 console.log(err);
             })
     }
 
-    static renderFilmesTable(movies) {
+    static renderFilmesTable(rooms) {
         var posicao = 1;
         return (
             <div>
                 <Layout />
                 <div className='content-wrapper'>
-                    <ContentHeader title='Resultado do Torneio' />
+                    <ContentHeader title='Salas Reservadas' />
                     <Content>
                         <div className='resultform'>
                             <Main>
                                 <table class="table table-striped table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Posição</th>
-                                            <th>Filme</th>
-                                            <th>Ano</th>
-                                            <th>Nota</th>
+                                            <th>Descrição</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {movies.map(movie =>
-                                            <tr key={movie.id}>
-                                                <td>{posicao++} &#x02218;</td>
-                                                <td>{movie.titulo}</td>
-                                                <td>{movie.ano}</td>
-                                                <td>{movie.nota}</td>
+                                        {rooms.map(room =>
+                                            <tr key={room.id}>
+                                                <td>{room.description}</td>
                                             </tr>
                                         )}
                                     </tbody>
@@ -84,7 +79,7 @@ export default class TournamentResult extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>  Loading...</em></p>
-            : TournamentResult.renderFilmesTable(this.state.movies);
+            : ReservationsAvailability.renderFilmesTable(this.state.rooms);
 
         return (
             <div>

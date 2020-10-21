@@ -13,8 +13,6 @@ namespace ISys.Services.Api.Configurations
 
           services.AddAutoMapper();
 
-          // Registering Mappings automatically only works if the 
-          // Automapper Profile classes are in ASP.NET project
           AutoMapperConfig.RegisterMappings();
       }
   }

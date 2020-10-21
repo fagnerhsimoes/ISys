@@ -13,7 +13,7 @@ namespace ISys.Infra.CrossCutting.Identity.Models.AccountViewModels
         [StringLength(30, ErrorMessage = "O campo {0} precisa ter entre {2} e {1} caracteres", MinimumLength = 6)]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Lembrar-Me?")]
         public bool RememberMe { get; set; }
     }
 }

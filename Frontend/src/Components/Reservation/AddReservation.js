@@ -1,4 +1,4 @@
-import './Product.css';
+import './Reservation.css';
 import React, { Component } from 'react';
 import { reduxForm, Field, formValueSelector } from 'redux-form';
 import { withRouter, Link } from "react-router-dom";
@@ -11,42 +11,29 @@ import ContentHeader from '../../Commons/Templates/Form/ContentHeader';
 import Content from '../../Commons/Templates/Form/Content';
 import Main from '../../Commons/Templates/Main/Main';
 import Layout from '../../Commons/Templates/Layout/Layout';
-import { productAction } from "../../Actions";
-import { categoryAction } from "../../Actions";
+import { reservationAction } from "../../Actions";
+import { roomAction } from "../../Actions";
 import { required, minLength3, maxLength100 }
     from '../../Commons/Templates/Form/ValidatorInFieldLevel';
 import { createNumberMask, createTextMask, create } from 'redux-form-input-masks';
 import Selector from '../../Commons/Templates/Checkbox/Selector';
 
 const headerProps = {
-    title: 'Inserir um Produto',
+    title: 'Inserir uma Reserva de Sala',
 }
 
-const currencyMask = createNumberMask({
-    prefix: 'R$ ',
-    suffix: '',
-    decimalPlaces: 2,
-    locale: 'pt-BR',
-})
-
-const phoneMask = createTextMask({
-    pattern: '(99) 99999-9999',
-});
-
-
-
-class AddProduct extends Component {
+class AddReservation extends Component {
     componentWillMount = () => {
         const { id } = this.props.match.params;
         const { dispatch } = this.props;
-        dispatch(categoryAction.getCategory());
-    
+        dispatch(roomAction.getRoom());
+
         if (!(id === undefined || !id)) {
-            dispatch(productAction.getProductById(id))
+            dispatch(reservationAction.getReservationById(id))
         }
     }
 
-
+ 
     handleChange = name => event => {
         this.setState({ [name]: event.target.value, });
     };
@@ -57,26 +44,26 @@ class AddProduct extends Component {
         const { dispatch } = this.props;
 
         if (!(id === undefined || !id)) {
-            dispatch(productAction.editProductInfo(id, values, this.props.history));
+            dispatch(reservationAction.editReservationInfo(id, values, this.props.history));
         } else {
-            dispatch(productAction.createProduct(values, this.props.history));
+            dispatch(reservationAction.createReservation(values, this.props.history));
         }
     }
 
 
     render() {
         const { id } = this.props.match.params;
-        const { pristine, submitting, handleSubmit, reset} = this.props
-        const { category } = this.props.category;
-        console.log(this.props.product);
+        const { pristine, submitting, handleSubmit, reset } = this.props
+        const { room } = this.props.room;
+        console.log(this.props.reservation);
 
         function InsertText(props) {
-            headerProps.title = 'Inserir um Produto.';
+            headerProps.title = 'Inserir uma Reserva de Sala.';
             return '';
         }
 
         function EditText(props) {
-            headerProps.title = 'Editar o Produto.';
+            headerProps.title = 'Editar a Reserva da Sala.';
             return '';
         }
 
@@ -87,13 +74,13 @@ class AddProduct extends Component {
                 return <InsertText />;
             }
         }
-        
+
         return (
             <div>
                 <Layout />
                 <div className='content-wrapper'>
                     <ContentHeader {...headerProps} />
-                    <div role='form' className='productform'>
+                    <div role='form' className='reservationform'>
                         <SegHeader />
                     </div>
                     <Content>
@@ -102,40 +89,38 @@ class AddProduct extends Component {
                                 <div className='box-body'>
                                     <div className="input-field col s12">
                                         <Field component={InputCuston}
-                                            name="name"
+                                            name="title"
                                             type="text"
-                                            placeholder="Informe o Nome"
-                                            label='Nome'
+                                            placeholder="Informe o Título"
+                                            label='Título'
                                             validate={[required, minLength3, maxLength100]}
                                         />
                                     </div>
                                     <div className="input-field col s12">
-                                        <Field component={InputCuston}
-                                            name="description"
+                                        <Field component={Selector}
+                                            name="roomId"
+                                            placeholder="Informe a Sala"
+                                            label='Sala'
                                             type="text"
-                                            placeholder="Informe a Descrição"
-                                            label='Descrição'
-                                            validate={[required, minLength3, maxLength100]}
-                                        />
-                                    </div>
-                                    <div className="input-field col s12">
-                                        <Field component={InputCuston}
-                                            name="price"
-                                            placeholder="Informe o Valor"
-                                            label='Valor'
-                                            type="tel"
-                                            {...currencyMask}
+                                            data={room}
                                             validate={[required]}
                                         />
                                     </div>
-
                                     <div className="input-field col s12">
-                                        <Field component={Selector}
-                                            name="categoryId"
-                                            placeholder="Informe a Categoria"
-                                            label='Categoria'
-                                            type="text"
-                                            data={category}
+                                        <Field component={InputCuston}
+                                            name="dateInitial"
+                                            type="datetime-local"
+                                            placeholder="Informe a Data e Hora de Início"
+                                            label='Data e Hora de Inicio'
+                                            validate={[required]}
+                                        />
+                                    </div>
+                                    <div className="input-field col s12">
+                                        <Field component={InputCuston}
+                                            name="dateFinal"
+                                            type="datetime-local"
+                                            placeholder="Informe a Data e Hora Final"
+                                            label='Data e Hora Final'
                                             validate={[required]}
                                         />
                                     </div>
@@ -144,7 +129,7 @@ class AddProduct extends Component {
                                         <tr />
                                         <Link
                                             class="btn btn-danger"
-                                            to='/product'>
+                                            to='/reservation'>
                                             <span>Cancelar</span>
                                         </Link>
 
@@ -171,19 +156,19 @@ class AddProduct extends Component {
     }
 }
 
-AddProduct.propTypes = {
-    product: PropTypes.object.isRequired,
-    category: PropTypes.object.isRequired,
+AddReservation.propTypes = {
+    reservation: PropTypes.object.isRequired,
+    room       : PropTypes.object.isRequired,
 };
 
-AddProduct = reduxForm({ form: 'AddProductForm', touchOnBlur: false, enableReinitialize: true, destroyOnUnmount: true })(AddProduct)
+AddReservation = reduxForm({ form: 'AddReservationForm', touchOnBlur: false, enableReinitialize: true, destroyOnUnmount: true })(AddReservation)
 const mapStateToProps = (state, props) => ({
-    initialValues: state.product,
-    category: state.category
+    initialValues: state.reservation,
+    room: state.room
 });
 
 
-export default connect(mapStateToProps)(withRouter(AddProduct));
+export default connect(mapStateToProps)(withRouter(AddReservation));
 
 
 

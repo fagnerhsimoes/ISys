@@ -9,21 +9,21 @@ namespace ISys.Domain.Validations
         protected void ValidateTitle()
         {
             RuleFor(c => c.Title)
-                .NotEmpty().WithMessage("Please ensure you have entered the Title")
-                .Length(3, 150).WithMessage("The Title must have between 3 and 100 characters");
+                .NotEmpty().WithMessage("Por Favor, Informe o Título")
+                .Length(3, 100).WithMessage("O Título deve ter entre 3 e 100 Caracteres");
         }
 
 
         protected void ValidateDateInitial()
         {
             RuleFor(c => c.DateInitial)
-                .NotEmpty().WithMessage("Please ensure you have entered the Data Inicial");
+                .NotEmpty().WithMessage("Por Favor, Informe a Data e Hora Inicial");
         }
 
         protected void ValidateDateFinal()
         {
             RuleFor(c => c.DateFinal)
-                .NotEmpty().WithMessage("Please ensure you have entered the Data Final");
+                .NotEmpty().WithMessage("Por Favor, Informe a Data e Hora Final");
         }
 
 

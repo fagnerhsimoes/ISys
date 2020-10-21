@@ -1,4 +1,4 @@
-import './Category.css';
+import './Room.css';
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Link, withRouter } from "react-router-dom";
@@ -10,21 +10,21 @@ import ContentHeader from '../../Commons/Templates/Form/ContentHeader';
 import Content from '../../Commons/Templates/Form/Content';
 import Main from '../../Commons/Templates/Main/Main';
 import Layout from '../../Commons/Templates/Layout/Layout';
-import { categoryAction } from "../../Actions";
-import { required, minLength3, maxLength100, isEmail }
+import { roomAction } from "../../Actions";
+import { required, minLength3, maxLength100 }
   from '../../Commons/Templates/Form/ValidatorInFieldLevel';
 
 const headerProps = {
-  title: 'Inserir um Categoria',
+  title: 'Inserir uma Sala',
 }
 
-class AddCategory extends Component {
+class AddRoom extends Component {
   componentWillMount = () => {
     const { id } = this.props.match.params;
 
     if (!(id === undefined || !id)) {
       const { dispatch } = this.props;
-      dispatch(categoryAction.getCategoryById(id))
+      dispatch(roomAction.getRoomById(id))
     }
   }
 
@@ -37,9 +37,9 @@ class AddCategory extends Component {
     const { dispatch } = this.props;
 
     if (!(id === undefined || !id)) {
-      dispatch(categoryAction.editCategoryInfo(id, values, this.props.history));
+      dispatch(roomAction.editRoomInfo(id, values, this.props.history));
     } else {
-      dispatch(categoryAction.createCategory(values, this.props.history));
+      dispatch(roomAction.createRoom(values, this.props.history));
     }
   }
 
@@ -47,15 +47,15 @@ class AddCategory extends Component {
     const { id } = this.props.match.params;
     const { pristine, submitting, handleSubmit, reset//, load 
     } = this.props
-    console.log(this.props.category);
+    console.log(this.props.room);
 
     function InsertText(props) {
-      headerProps.title = 'Inserir um Categoria.';
+      headerProps.title = 'Inserir uma Sala.';
       return '';
     }
 
     function EditText(props) {
-      headerProps.title = 'Editar o Categoria.';
+      headerProps.title = 'Editar a Sala.';
       return '';
     }
 
@@ -72,7 +72,7 @@ class AddCategory extends Component {
         <Layout />
         <div className='content-wrapper'>
           <ContentHeader {...headerProps} />
-          <div role='form' className='categoryform'>
+          <div role='form' className='roomform'>
             <SegHeader />
           </div>
           <Content>
@@ -81,10 +81,10 @@ class AddCategory extends Component {
                 <div className='box-body'>
                   <div className="input-field col s12">
                     <Field component={InputCuston}
-                      name="title"
+                      name="description"
                       type="text"
-                      placeholder="Informe o Titulo"
-                      label='Titulo'
+                      placeholder="Informe a Descrição da Sala"
+                      label='Descrição'
                       validate={[required, minLength3, maxLength100]}
                     />
                   </div>
@@ -93,7 +93,7 @@ class AddCategory extends Component {
                     <tr />
                     <Link
                       class="btn btn-danger"
-                      to='/category'>
+                      to='/room'>
                       <span>Cancelar</span>
                     </Link>
                     <button
@@ -120,18 +120,18 @@ class AddCategory extends Component {
   }
 }
 
-AddCategory.propTypes = {
-  category: PropTypes.object.isRequired,
+AddRoom.propTypes = {
+  room: PropTypes.object.isRequired,
 };
 
-AddCategory = reduxForm({ form: 'AddCategoryForm', touchOnBlur: false, enableReinitialize: true, destroyOnUnmount: true })(AddCategory)
+AddRoom = reduxForm({ form: 'AddRoomForm', touchOnBlur: false, enableReinitialize: true, destroyOnUnmount: true })(AddRoom)
 const mapStateToProps = (state, props) => ({
-  initialValues: state.category
+  initialValues: state.room
 });
 
 //Não vou usar ActionsCreators de momento.
-//const mapDispatchToProps = dispatch => bindActionCreators({load: loadCategory}, dispatch)
+//const mapDispatchToProps = dispatch => bindActionCreators({load: loadCustomer}, dispatch)
 
 export default connect(
   mapStateToProps//, mapDispatchToProps
-)(withRouter(AddCategory));
+)(withRouter(AddRoom));

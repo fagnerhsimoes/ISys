@@ -10,7 +10,7 @@ namespace ISys.Application.ViewModels
         [Key]
         public Guid Id { get; set; }
 
-        [Required(ErrorMessage = "Description")]
+        [Required(ErrorMessage = "A Descrição é Obrigatória")]
         [MinLength(2)]
         [MaxLength(100)]
         [DisplayName("Description")]

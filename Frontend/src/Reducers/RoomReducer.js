@@ -1,22 +1,22 @@
-import { FETECHED_ALL_CATEGORY, CATEGORY_DETAIL, USER_UPDATED, HANDLE_ON_CHANGE } from "../Actions/Types";
+import { FETECHED_ALL_ROOM, ROOM_DETAIL, USER_UPDATED, HANDLE_ON_CHANGE } from "../Actions/Types";
 
 const initialState = { anchor: 'left',
-    category: [],
+    room: [],
     open: false,
  };
 
-export default function category(state = initialState, action) {
+export default function room(state = initialState, action) {
     switch (action.type) {
-        case FETECHED_ALL_CATEGORY:
+        case FETECHED_ALL_ROOM:
             return {
             ...state, 
-            category: action.category
+            room: action.room
             };
-        case CATEGORY_DETAIL:
+        case ROOM_DETAIL:
             return {
                 ...state,
-                id        : action.id,  
-                title     : action.title,
+                id          : action.id,  
+                description : action.description,
             };
         case USER_UPDATED:
             return state;

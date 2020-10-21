@@ -8,22 +8,18 @@ import SetAuthToken from "./Helpers/SetAuthToken";
 import History from "./Helpers/History";
 import Store from "./Reducers/Store";
 import PrivateRoute from "./Config/Private-Route/PrivateRoute";
-import Dashboard from "./Components/Dashboard/Dashboard";
+import Home from "./Components/Home/Home";
 import Register from "./Components/Auth/Register";
 import Login from "./Components/Auth/Login";
-import { Vendor } from "./Components/Vendors/Vendor";
-import AddVendor from "./Components/Vendors/AddVendor";
-import { Product } from "./Components/Product/Product";
-import AddProduct from "./Components/Product/AddProduct";
-import { Customer } from "./Components/Customer/Customer";
-import AddCustomer from "./Components/Customer/AddCustomer";
-import { Category } from "./Components/Category/Category";
-import  Teste  from "./Components/Category/Teste";
-import AddCategory from "./Components/Category/AddCategory";
-import { Movie } from "./Components/Movie/Movie";
-import { Tournament } from "./Components/Tournament/Tournament";
-import TournamentResult from "./Components/TournamentResult/TournamentResult";
-import { TournamentList } from "./Components/TournamentList/TournamentList";
+import { Room } from "./Components/Room/Room";
+import AddRoom from "./Components/Room/AddRoom";
+import { Reservation } from "./Components/Reservation/Reservation";
+import AddReservation from "./Components/Reservation/AddReservation";
+import GetReservationsAvailability from "./Components/Reservation/GetReservationsAvailability";
+import ReservationsAvailability  from "./Components/Reservation/ReservationsAvailability";
+
+
+
 
 if (localStorage.jwtToken) {
   const token = localStorage.jwtToken;
@@ -47,25 +43,15 @@ class App extends Component {
             <Route exact path="/" component={Login} />
             <Route exact path="/register" component={Register} />
             <Switch>
-              <PrivateRoute exact path="/home"                  component={Dashboard} />
-              <PrivateRoute exact path="/vendor"                component={Vendor} />
-              <PrivateRoute exact path='/add-vendor'            component={AddVendor} />
-              <PrivateRoute exact path='/edit-vendor/:id'       component={AddVendor} />
-              <PrivateRoute exact path='/product'               component={Product} />
-              <PrivateRoute exact path='/add-product'           component={AddProduct} />
-              <PrivateRoute exact path='/edit-product/:id'      component={AddProduct} />
-              <PrivateRoute exact path='/customer'              component={Customer} />
-              <PrivateRoute exact path='/add-customer'          component={AddCustomer} />
-              <PrivateRoute exact path='/edit-customer/:id'     component={AddCustomer} />
-              <PrivateRoute exact path='/category'              component={Category} />
-              <PrivateRoute exact path='/category/:startDateIndex?' component={Category} />
-              <PrivateRoute exact path='/add-category'          component={AddCategory} />
-              <PrivateRoute exact path='/edit-category/:id'     component={AddCategory} />
-              <PrivateRoute exact path="/filme"                 component={Movie} />
-              <PrivateRoute exact path="/torneio"               component={Tournament} />
-              <PrivateRoute exact path='/resultadotorneio'      component={TournamentResult} />
-              <PrivateRoute exact path='/resultadotorneio/:id'  component={TournamentResult} />
-              <PrivateRoute exact path='/torneiosrealizados'    component={TournamentList} />
+              <PrivateRoute exact path="/home"                        component={Home} />
+              <PrivateRoute exact path='/reservation'                 component={Reservation} />
+              <PrivateRoute exact path='/add-reservation'             component={AddReservation} />
+              <PrivateRoute exact path='/edit-reservation/:id'        component={AddReservation} />
+              <PrivateRoute exact path='/getreservationsavailability' component={GetReservationsAvailability} />
+              <PrivateRoute exact path='/reservationsavailability'    component={ReservationsAvailability} />
+              <PrivateRoute exact path='/room'                        component={Room} />
+              <PrivateRoute exact path='/add-room'                    component={AddRoom} />
+              <PrivateRoute exact path='/edit-room/:id'               component={AddRoom} />
               <Redirect from='*' to='/' />
             </Switch>
           </div>

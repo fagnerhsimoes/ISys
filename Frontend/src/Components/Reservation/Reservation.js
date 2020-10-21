@@ -1,4 +1,4 @@
-import './Product.css';
+import './Reservation.css';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom";
@@ -8,21 +8,23 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import IButton from '../../Commons/Templates/Form/IconButton';
 import Main from '../../Commons/Templates/Main/Main';
-import { productAction } from '../../Actions';
+import { reservationAction } from '../../Actions';
 import Layout from '../../Commons/Templates/Layout/Layout';
 import ContentHeader from '../../Commons/Templates/Form/ContentHeader';
 import Content from '../../Commons/Templates/Form/Content';
 import Row from '../../Commons/Templates/Form/Row';
 import Button from '@material-ui/core/Button';
+import moment from 'moment';
+import 'moment/locale/pt-br';
 
 const headerProps = {
-    title: 'Lista de Produtos cadastrados.',
+    title: 'Lista de Reservas.',
 }
 
-class Product extends Component {
+class Reservation extends Component {
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(productAction.getProduct());
+        dispatch(reservationAction.getReservation());
     }
 
     handleChange = event => {
@@ -35,11 +37,11 @@ class Product extends Component {
     handleClick = (event, id) => {
         console.log(id);
         const { dispatch } = this.props;
-        dispatch(productAction.deleteProductById(id))
+        dispatch(reservationAction.deleteReservationById(id))
     };
 
     render() {
-        const { product } = this.props.product;
+        const { reservation } = this.props.reservation;
 
         return (
             <div >
@@ -47,11 +49,11 @@ class Product extends Component {
                 <div className='content-wrapper'>
                     <ContentHeader {...headerProps} />
                     <Content>
-                        <div className='productform'>
+                        <div className='reservationform'>
                             <Row>
                                 <Grid cols='12 9 10'>
                                     <input id='description' className='form-control'
-                                        placeholder='Pesquisar um produto...'
+                                        placeholder='Pesquisar uma reserva...'
                                         onChange={this.props.changeDescription}
                                         onKeyUp={this.keyHandler}
                                         value={this.props.description} />
@@ -65,8 +67,14 @@ class Product extends Component {
                             <Row>
                                 <Button class="btn btn-primary"
                                     component='a'
-                                    href="/add-product">
-                                    Cadastrar
+                                    href="/add-reservation">
+                                    Nova Reserva
+					        	</Button>
+
+                                <Button class="btn btn-primary"
+                                    component='a'
+                                    href="/getreservationsavailability">
+                                    Disponibilidade de Salas
 					        	</Button>
                             </Row>
                         </div>
@@ -75,21 +83,23 @@ class Product extends Component {
                                 <table className='table'>
                                     <thead>
                                         <tr>
-                                            <th>Nome</th>
-                                            <th>Descrição</th>
-                                            <th>Valor</th>
+                                            <th>Título</th>
+                                            <th>Sala</th>
+                                            <th datatype>Data e Hora de Inicio</th>
+                                            <th datatype>Data e Hora Final</th>
                                             <th className='table-actions'>Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {product.map(n => {
+                                        {reservation.map(n => {
                                             return (
                                                 <tr key={n.id}>
-                                                    <td>{n.name}</td>
-                                                    <td>{n.description}</td>
-                                                    <td money> R$ {n.price}</td>
+                                                    <td>{n.title}</td>
+                                                    <td>{n.room.description}</td>
+                                                    <td datatype>{ moment(n.dateInitial).format('LLL')}</td>
+                                                    <td datatype>{ moment(n.dateFinal).format('LLL')}</td>
                                                     <td>
-                                                        <IconButton aria-label="Edit" component='a' href={`edit-product/${n.id}`}>
+                                                        <IconButton aria-label="Edit" component='a' href={`edit-reservation/${n.id}`}>
                                                             <EditIcon />
                                                         </IconButton>
                                                         <IconButton aria-label="Delete" onClick={(event) => this.handleClick(event, n.id)}>
@@ -112,10 +122,10 @@ class Product extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        product: state.product
+        reservation: state.reservation
     };
 }
 
-const connectedProductPage = withRouter(connect(mapStateToProps, null, null, { pure: false })(Product));
+const connectedReservationPage = withRouter(connect(mapStateToProps, null, null, { pure: false })(Reservation));
 
-export { connectedProductPage as Product };
+export { connectedReservationPage as Reservation };

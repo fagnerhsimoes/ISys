@@ -1,16 +1,16 @@
-.categoryform {
+.reservationform {
     margin-left: 0px;
     margin-right: 0px;
     padding: 0px 0px 0x 0px;
 }
 
-.categoryform input {
+.reservationform input {
     margin-left: 2px;
     margin-right: 0px;
     padding: 0px 0px 0px 10px;
 }
 
-.categoryform a {
+.reservationform a {
     margin-top: 10px;
     margin-bottom: 16px;
     margin-left: 19px;

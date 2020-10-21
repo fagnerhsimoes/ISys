@@ -13,25 +13,25 @@ namespace ISys.Application.ViewModels
         [Key]
         public Guid Id { get; set; }
 
-        [Required(ErrorMessage = "The Title is Required")]
+        [Required(ErrorMessage = "O Título é Obrigatório")]
         [MinLength(3)]
         [MaxLength(100)]
         [DisplayName("Title")]
         public string Title { get; set; }
 
-        [Required(ErrorMessage = "The DateInitial is Required")]
+        [Required(ErrorMessage = "A Data e Hora de Inicio é Obrigatória")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd hh:mm:ss}")]
         [DataType(DataType.DateTime, ErrorMessage = "Data em formato inválido")]
         [DisplayName("DateInitial")]
         public DateTime DateInitial { get; set; }
 
-        [Required(ErrorMessage = "The DateFinal is Required")]
+        [Required(ErrorMessage = "A Data e Hora Final é Obrigatória")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
         [DisplayName("DateFinal")]
         public DateTime DateFinal { get; set; }
 
-        [Required(ErrorMessage = "The Room Id is Required")]
+        [Required(ErrorMessage = "A Sala é Obrigatória")]
         [DisplayName("RoomId")]
         public Guid RoomId { get; set; }
 
