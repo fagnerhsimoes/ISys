@@ -56,12 +56,12 @@ namespace ISys.Application.Services
             return Reservation;
         }
 
-        public IEnumerable<RoomViewModel> GetAvailability(AvailabilityViewModel availabilityViewModel, bool check)
+        public IEnumerable<RoomViewModel> GetAvailability(AvailabilityViewModel availabilityViewModel)
         {
             var exp = ReservationQueries.GetNotAvailability(availabilityViewModel);
             var Reservations = _Reservations.AsQueryable().Where(exp).ToList();
 
-            if (check)
+            if (availabilityViewModel.Availability)
             {
                 var Rooms = _roomAppService.GetAll().ToList();
                 foreach (var reservation in Reservations.GroupBy(r => r.RoomId))

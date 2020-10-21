@@ -17,6 +17,16 @@ function get(apiEndpoint){
     })
 }
 
+function get(apiEndpoint, payload){
+    return axios.get(apiEndpoint, payload )
+    .then((response)=>{
+        return response;
+    }).catch((err)=>{
+        console.log("Error in response");
+        console.log(err);
+    })
+}
+
 function post(apiEndpoint, payload){
     return axios.post(apiEndpoint, payload)
     .then((response)=>{

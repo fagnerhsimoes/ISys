@@ -74,7 +74,7 @@ class Reservation extends Component {
                                 <Button class="btn btn-primary"
                                     component='a'
                                     href="/getreservationsavailability">
-                                    Disponibilidade de Salas
+                                    Disponibilidade
 					        	</Button>
                             </Row>
                         </div>

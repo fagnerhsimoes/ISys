@@ -8,6 +8,7 @@ import Content from '../../Commons/Templates/Form/Content';
 import Layout from '../../Commons/Templates/Layout/Layout';
 import Main from '../../Commons/Templates/Main/Main';
 import Button from '@material-ui/core/Button';
+import { reservationAction } from "../../Actions";
 
 export default class ReservationsAvailability extends Component {
     displayName = ReservationsAvailability.name
@@ -16,13 +17,22 @@ export default class ReservationsAvailability extends Component {
         this.state = { rooms: []};
     }
     componentDidMount = () => {
-        const { id } = this.props.match.params;
-        if (!(id === undefined || !id)) {
+        const { dateInitial, dateFinal , bool} = this.props.match.params;
+        const { dispatch } = this.props;
+        /*if (!(id === undefined || !id)) {
             this.LoadResult(id);
-        }
-    }
+        }*/
 
-    LoadResult = async (id) => {
+        /*this.setState.dateInitial = '2020-10-24T08:00:00';
+        this.setState.dateFinal   = '2020-10-24T12:00:00';
+        this.setState.bool        = true;*/
+
+        if (!(dateInitial === dateInitial || !dateInitial)) {
+            dispatch(reservationAction.getAvailability(this.props.match.params, this.props.history));
+    }
+}
+
+   /* LoadResult = async (id) => {
         let apiEndpoint = baseUrlCore + '/v1/room/availability/true';
         await userService.get(apiEndpoint)
             .then((response) => {
@@ -33,9 +43,9 @@ export default class ReservationsAvailability extends Component {
                 console.log("Error");
                 console.log(err);
             })
-    }
+    }*/
 
-    static renderFilmesTable(rooms) {
+    static renderRoomsTable(rooms) {
         var posicao = 1;
         return (
             <div>
@@ -65,7 +75,7 @@ export default class ReservationsAvailability extends Component {
                                 <tr />
                                 <Link
                                     class="btn btn-primary"
-                                    to='/torneiosrealizados'>
+                                    to='/getreservationsavailability'>
                                     <span>Voltar</span>
                                 </Link>
                             </div>
@@ -79,7 +89,7 @@ export default class ReservationsAvailability extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>  Loading...</em></p>
-            : ReservationsAvailability.renderFilmesTable(this.state.rooms);
+            : ReservationsAvailability.renderRoomsTable(this.state.rooms);
 
         return (
             <div>

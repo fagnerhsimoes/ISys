@@ -48,8 +48,8 @@ namespace ISys.Services.Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("v1/room/availability/{check:bool}")]
-        public IActionResult Availability([FromBody] AvailabilityViewModel availabilityViewModel, bool check)
+        [HttpGet("v1/room/availability")]
+        public IActionResult Availability([FromBody] AvailabilityViewModel availabilityViewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace ISys.Services.Api.Controllers
                 return Response(availabilityViewModel);
             }
 
-            return Response(_ReservationAppService.GetAvailability(availabilityViewModel, check));
+            return Response(_ReservationAppService.GetAvailability(availabilityViewModel));
         }
 
         [AllowAnonymous]

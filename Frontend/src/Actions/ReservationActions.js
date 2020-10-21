@@ -36,7 +36,7 @@ function getReservation(){
 
 function getAvailability(payload, history){
     return async dispatch => {
-        let apiEndpoint = baseUrlCore + '/v1/room/availability/true';
+        let apiEndpoint = baseUrlCore + '/v1/room/availability';
         await userService.post(apiEndpoint, payload)
         .then((response)=>{
             console.log(response);

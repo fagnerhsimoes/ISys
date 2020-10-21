@@ -23,33 +23,20 @@ const headerProps = {
 }
 
 class GetReservationsAvailability extends Component {
-    componentWillMount = () => {
-        const { id } = this.props.match.params;
-        const { dispatch } = this.props;
-        dispatch(roomAction.getRoom());
 
-        if (!(id === undefined || !id)) {
-            dispatch(reservationAction.getReservationById(id))
-        }
-    }
-
- 
     handleChange = name => event => {
         this.setState({ [name]: event.target.value, });
     };
 
 
     handleClick(values) {
-        const { id } = this.props.match.params;
         const { dispatch } = this.props;
         dispatch(reservationAction.getAvailability(values, this.props.history));
     }
 
 
     render() {
-        const { id } = this.props.match.params;
         const { pristine, submitting, handleSubmit } = this.props
-        const { room } = this.props.room;
         console.log(this.props.reservation);
 
         function InsertText(props) {
@@ -57,17 +44,8 @@ class GetReservationsAvailability extends Component {
             return '';
         }
 
-        function EditText(props) {
-            headerProps.title = 'Editar a Reserva da Sala.';
-            return '';
-        }
-
         function SegHeader() {
-            if (!(id === undefined || !id)) {
-                return <EditText />;
-            } else {
-                return <InsertText />;
-            }
+            return <InsertText />;
         }
 
         return (
@@ -126,14 +104,12 @@ class GetReservationsAvailability extends Component {
 }
 
 GetReservationsAvailability.propTypes = {
-    reservation: PropTypes.object.isRequired,
-    room       : PropTypes.object.isRequired,
+    reservation: PropTypes.object.isRequired
 };
 
 GetReservationsAvailability = reduxForm({ form: 'GetReservationsAvailabilityForm', touchOnBlur: false, enableReinitialize: true, destroyOnUnmount: true })(GetReservationsAvailability)
 const mapStateToProps = (state, props) => ({
-    initialValues: state.reservation,
-    room: state.room
+    initialValues: state.reservation
 });
 
 

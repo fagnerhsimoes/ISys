@@ -27,6 +27,8 @@ export const FETECHED_ALL_ROOM            = "FETECHED_ALL_ROOM";
 export const ROOM_DETAIL                  = "ROOM_DETAIL";
 export const DELETED_ROOM_DETAILS         = "DELETED_ROOM_DETAILS";
 
+export const FETECHED_ALL_ROOM_AVAILABILITY = "FETECHED_ALL_ROOM_AVAILABILITY";
+
 
 
 

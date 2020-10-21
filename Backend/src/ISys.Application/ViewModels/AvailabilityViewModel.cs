@@ -22,5 +22,10 @@ namespace ISys.Application.ViewModels
         [DataType(DataType.Date, ErrorMessage = "Data e hora em formato inválido")]
         [DisplayName("DateFinal")]
         public DateTime DateFinal { get; set; }
+
+
+        [Required(ErrorMessage = "É obrigatório informar a Disponibilidade")]
+        [DisplayName("Availability")]
+        public bool Availability { get; set; }
     }
 }
