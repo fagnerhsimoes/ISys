@@ -1,22 +1,19 @@
 import './Reservation.css';
 import React, { Component } from 'react';
-import { reduxForm, Field, formValueSelector } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
 import { withRouter, Link } from "react-router-dom";
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import { TextField, MenuItem, InputLabel } from '@material-ui/core';
 import { InputCuston } from '../../Commons/Templates/Form/Input';
 import ContentHeader from '../../Commons/Templates/Form/ContentHeader';
 import Content from '../../Commons/Templates/Form/Content';
 import Main from '../../Commons/Templates/Main/Main';
 import Layout from '../../Commons/Templates/Layout/Layout';
 import { reservationAction } from "../../Actions";
-import { roomAction } from "../../Actions";
-import { required, minLength3, maxLength100 }
+import { required }
     from '../../Commons/Templates/Form/ValidatorInFieldLevel';
-import { createNumberMask, createTextMask, create } from 'redux-form-input-masks';
-import Selector from '../../Commons/Templates/Checkbox/Selector';
+
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+
 
 const headerProps = {
     title: 'Consultar Disponibilidade de Reservas de Salas',
@@ -28,7 +25,6 @@ class GetReservationsAvailability extends Component {
         this.setState({ [name]: event.target.value, });
     };
 
-
     handleClick(values) {
         const { dispatch } = this.props;
         dispatch(reservationAction.getAvailability(values, this.props.history));
@@ -36,7 +32,7 @@ class GetReservationsAvailability extends Component {
 
 
     render() {
-        const { pristine, submitting, handleSubmit } = this.props
+        const { pristine, submitting, handleSubmit, reset } = this.props
         console.log(this.props.reservation);
 
         function InsertText(props) {
@@ -78,6 +74,7 @@ class GetReservationsAvailability extends Component {
                                             validate={[required]}
                                         />
                                     </div>
+
                                     <tr />
                                     <div className="Btns">
                                         <tr />
@@ -86,6 +83,13 @@ class GetReservationsAvailability extends Component {
                                             to='/reservation'>
                                             <span>Cancelar</span>
                                         </Link>
+
+                                        <button type="button"
+                                            class="btn btn-default"
+                                            disabled={pristine || submitting}
+                                            onClick={reset}>
+                                            Limpar
+                                        </button>
 
                                         <button type="submit"
                                             class="btn btn-primary"
@@ -103,17 +107,10 @@ class GetReservationsAvailability extends Component {
     }
 }
 
-GetReservationsAvailability.propTypes = {
-    reservation: PropTypes.object.isRequired
-};
-
 GetReservationsAvailability = reduxForm({ form: 'GetReservationsAvailabilityForm', touchOnBlur: false, enableReinitialize: true, destroyOnUnmount: true })(GetReservationsAvailability)
-const mapStateToProps = (state, props) => ({
-    initialValues: state.reservation
-});
 
 
-export default connect(mapStateToProps)(withRouter(GetReservationsAvailability));
+export default (withRouter(GetReservationsAvailability));
 
 
 

@@ -1,4 +1,4 @@
-import { FETECHED_ALL_RESERVATION, HANDLE_ON_CHANGE, RESERVATION_DETAIL,
+import { FETECHED_ALL_RESERVATION,FETECHED_ALL_ROOM_AVAILABILITY, HANDLE_ON_CHANGE, RESERVATION_DETAIL,
     USER_UPDATED, USER_CREATED_SUCCESSFULLY, DELETED_RESERVATION_DETAILS
 } from "./Types";
 
@@ -35,15 +35,18 @@ function getReservation(){
 
 
 function getAvailability(payload, history){
+    console.log(payload);
     return async dispatch => {
         let apiEndpoint = baseUrlCore + '/v1/room/availability';
         await userService.post(apiEndpoint, payload)
         .then((response)=>{
             console.log(response);
+            dispatch(changeAvailabilityList(response.data.data));
             history.push('/reservationsavailability');
         }) 
     }
 }
+
 
 
 function createReservation(payload, history){
@@ -103,6 +106,13 @@ export function changeReservationsList(reservation){
     return{
         type: FETECHED_ALL_RESERVATION,
         reservation: reservation
+    }
+}
+
+export function changeAvailabilityList(availability){
+    return{
+        type: FETECHED_ALL_ROOM_AVAILABILITY,
+        availability: availability
     }
 }
 

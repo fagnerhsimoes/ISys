@@ -1,4 +1,4 @@
-import { FETECHED_ALL_ROOM, ROOM_DETAIL, USER_UPDATED, HANDLE_ON_CHANGE , FETECHED_ALL_ROOM_AVAILABILITY} from "../Actions/Types";
+import { FETECHED_ALL_ROOM, ROOM_DETAIL, USER_UPDATED, HANDLE_ON_CHANGE} from "../Actions/Types";
 
 const initialState = { anchor: 'left',
     room: [],
@@ -12,11 +12,6 @@ export default function room(state = initialState, action) {
                ...state, 
                room: action.room
             };
-        case FETECHED_ALL_ROOM_AVAILABILITY:
-                return {
-                ...state, 
-                room: action.room
-                };
         case ROOM_DETAIL:
             return {
                 ...state,

@@ -1,100 +1,121 @@
-import './ReservationsAvailability.css';
+import './Reservation.css';
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { userService } from '../../Services/Index';
-import { baseUrlCore } from '../../Config/index';
+import { Link, withRouter } from "react-router-dom";
+import Grid from '../../Commons/Templates/Form/Grid';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
+import IButton from '../../Commons/Templates/Form/IconButton';
+import Main from '../../Commons/Templates/Main/Main';
+import { reservationAction } from '../../Actions';
+import Layout from '../../Commons/Templates/Layout/Layout';
 import ContentHeader from '../../Commons/Templates/Form/ContentHeader';
 import Content from '../../Commons/Templates/Form/Content';
-import Layout from '../../Commons/Templates/Layout/Layout';
-import Main from '../../Commons/Templates/Main/Main';
+import Row from '../../Commons/Templates/Form/Row';
 import Button from '@material-ui/core/Button';
-import { reservationAction } from "../../Actions";
+import moment from 'moment';
+import 'moment/locale/pt-br';
 
-export default class ReservationsAvailability extends Component {
-    displayName = ReservationsAvailability.name
-    constructor(props) {
-        super(props);
-        this.state = { rooms: []};
-    }
-    componentDidMount = () => {
-        const { dateInitial, dateFinal , bool} = this.props.match.params;
-        const { dispatch } = this.props;
-        /*if (!(id === undefined || !id)) {
-            this.LoadResult(id);
-        }*/
-
-        /*this.setState.dateInitial = '2020-10-24T08:00:00';
-        this.setState.dateFinal   = '2020-10-24T12:00:00';
-        this.setState.bool        = true;*/
-
-        if (!(dateInitial === dateInitial || !dateInitial)) {
-            dispatch(reservationAction.getAvailability(this.props.match.params, this.props.history));
-    }
+const headerProps = {
+    title: 'Lista de Reservas.',
 }
 
-   /* LoadResult = async (id) => {
-        let apiEndpoint = baseUrlCore + '/v1/room/availability/true';
-        await userService.get(apiEndpoint)
-            .then((response) => {
-                console.log(response);
-                const { data } = response;
-                this.setState({ rooms: data});
-            }).catch((err) => {
-                console.log("Error");
-                console.log(err);
-            })
-    }*/
+class ReservationsAvailability extends Component {
+    componentDidMount() {
+        const { dispatch } = this.props;
+        //const payLoad = { dateInitial : '2020-10-23T08:00:00', dateFinal : '2020-10-29T08:00:00', availability : false } 
+        //dispatch(reservationAction.getAvailability(payLoad,  this.props.history));
+    }
 
-    static renderRoomsTable(rooms) {
-        var posicao = 1;
+    handleChange = event => {
+        this.setState({
+            anchor: event.target.value,
+        });
+    };
+
+
+    handleClick = (event, id) => {
+        console.log(id);
+        const { dispatch } = this.props;
+        dispatch(reservationAction.deleteReservationById(id))
+    };
+
+    render() {
+        const { availability } = this.props.availability;
+
         return (
-            <div>
+            <div >
                 <Layout />
                 <div className='content-wrapper'>
-                    <ContentHeader title='Salas Reservadas' />
+                    <ContentHeader {...headerProps} />
                     <Content>
-                        <div className='resultform'>
-                            <Main>
-                                <table class="table table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Descrição</th>
+                        <div className='reservationform'>
+                            <Row>
+                                <Grid cols='12 9 10'>
+                                    <input id='description' className='form-control'
+                                        placeholder='Pesquisar uma reserva...'
+                                        onChange={this.props.changeDescription}
+                                        onKeyUp={this.keyHandler}
+                                        value={this.props.description} />
+                                </Grid>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {rooms.map(room =>
-                                            <tr key={room.id}>
-                                                <td>{room.description}</td>
-                                            </tr>
-                                        )}
-                                    </tbody>
-                                </table>
-                            </Main>
-                            <div className="Btns">
-                                <tr />
+                                <Grid cols='12 3 2'>
+                                    <IButton style='info' icon='search'></IButton>
+                                    <IButton style='default' icon='close' ></IButton>
+                                </Grid>
+                            </Row>
+                            <Row>
+
                                 <Link
                                     class="btn btn-primary"
                                     to='/getreservationsavailability'>
                                     <span>Voltar</span>
                                 </Link>
-                            </div>
+                            </Row>
                         </div>
+                        <Main>
+                            <div>
+                                <table className='table'>
+                                    <thead>
+                                        <tr>
+                                            <th>Descrição</th>
+                                            <th className='table-actions'>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {availability.map(n => {
+                                            return (
+                                                <tr key={n.id}>
+                                                    <td>{n.description}</td>
+                                                    <td>
+                                                        <IconButton aria-label="Edit" component='a' href={`edit-reservation/${n.id}`}>
+                                                            <EditIcon />
+                                                        </IconButton>
+                                                        <IconButton aria-label="Delete" onClick={(event) => this.handleClick(event, n.id)}>
+                                                            <DeleteIcon />
+                                                        </IconButton>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </Main>
                     </Content>
                 </div>
             </div>
         );
     }
-
-    render() {
-        let contents = this.state.loading
-            ? <p><em>  Loading...</em></p>
-            : ReservationsAvailability.renderRoomsTable(this.state.rooms);
-
-        return (
-            <div>
-                {contents}
-            </div>
-        );
-    }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        availability: state.availability
+    };
+}
+
+const connectedReservationsAvailabilityPage = withRouter(connect(mapStateToProps, null, null, { pure: false })(ReservationsAvailability));
+
+export { connectedReservationsAvailabilityPage as ReservationsAvailability };

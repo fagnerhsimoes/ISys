@@ -16,7 +16,7 @@ import AddRoom from "./Components/Room/AddRoom";
 import { Reservation } from "./Components/Reservation/Reservation";
 import AddReservation from "./Components/Reservation/AddReservation";
 import GetReservationsAvailability from "./Components/Reservation/GetReservationsAvailability";
-import ReservationsAvailability  from "./Components/Reservation/ReservationsAvailability";
+import { ReservationsAvailability } from "./Components/Reservation/ReservationsAvailability";
 
 
 

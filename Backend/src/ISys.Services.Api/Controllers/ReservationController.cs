@@ -48,7 +48,7 @@ namespace ISys.Services.Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("v1/room/availability")]
+        [HttpPost("v1/room/availability")]
         public IActionResult Availability([FromBody] AvailabilityViewModel availabilityViewModel)
         {
             if (!ModelState.IsValid)

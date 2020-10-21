@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const userService = {
     get,
+    getPay,
     post,
     put,
     deleteDetail
@@ -17,7 +18,7 @@ function get(apiEndpoint){
     })
 }
 
-function get(apiEndpoint, payload){
+function getPay(apiEndpoint, payload){
     return axios.get(apiEndpoint, payload )
     .then((response)=>{
         return response;
