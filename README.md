@@ -9,9 +9,9 @@ O objetivo deste projeto é implementar as tecnologias mais utilizadas e aplicar
  - Você precisará do Visual Studio 2019 e do .NET Core SDK mais recentes.
  - O SDK e as ferramentas mais recentes podem ser baixados em [https://dot.net/core](https://dotnet.microsoft.com/download).
 - ### Para criar a Instância do Servidor de Banco de Dados:
- - #### Se você tiver o Docker instalado localmente na maquina pode criar uma instancia de servidor nele.
+ - #### Se você tiver o Docker instalado localmente na máquina pode criar uma instância de servidor nele.
     * Com o Docker em execução, executar o seguinte comando para criar o Banco de Dados:
-    * - *docker run -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=135790@Big' -p 1433:1433 --name=SqlServer -d microsoft/mssql-server-linux*
+    * - ```docker run -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=135790@Big' -p 1433:1433 --name=SqlServer -d microsoft/mssql-server-linux```
      * Obs. Criando o servidor localmente não será necessário alterar o caminho do Banco nos arquivos de configuração do projeto.
  - #### Se você preferir usar outro servidor.
     * Alterar a string de conexão nos arquivos de configurações(appsettings.json) nos seguintes projetos:
@@ -23,11 +23,11 @@ O objetivo deste projeto é implementar as tecnologias mais utilizadas e aplicar
  - #### No Visual Studio com a solução aberta, abrir o gerenciador de pacotes do nuget.
     * No campo "Default Project", selecionar o projeto "ISys.Infra.CrossCutting.Identity".
     * Executar o seguinte comando:
-     - * *Update-Database -Context ApplicationDbContext*
+     - * ```Update-Database -Context ApplicationDbContext```
     * Em seguida, no campo "Default Project", selecionar o projeto "ISys.Infra.Data".
     * Executar os seguintes comandos:
-     - * *Update-Database -Context StoreDbContext*
-     - * *Update-Database -Context EventStoreSQLContext*
+     - * ```Update-Database -Context StoreDbContext```
+     - * ```Update-Database -Context EventStoreSQLContext```
     * Após estes passos, o Banco de Dados estará criado e as aplicações poderão ser executadas.
 
 Além disso, você pode executar o Projeto ISys no Visual Studio Code (Windows, Linux ou MacOS).
@@ -42,8 +42,8 @@ Para saber mais sobre como configurar seu ambiente, visite o Guia de [download](
 - ### Executando a Aplicação Frontend:
   - No programa de Linha de Comando de Preferência ou no VS CODE.
   - Abrir a pasta do projeto "Frontend".
-  - Executar o comando "*npm install*" ou se tiver o yarn instalado na maquina, pode executar o "*yarn install*"(Recomendado).
-  - Executar o comando "*yarn Start*".
+  - Executar o comando "```npm install```" ou se tiver o yarn instalado na máquina, pode executar o "```yarn install```"(Recomendado).
+  - Executar o comando "```yarn Start```".
 
 ## Tecnologias implementadas:
 
