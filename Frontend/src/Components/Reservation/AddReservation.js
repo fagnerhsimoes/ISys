@@ -4,8 +4,6 @@ import { reduxForm, Field, formValueSelector } from 'redux-form';
 import { withRouter, Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import { TextField, MenuItem, InputLabel } from '@material-ui/core';
 import { InputCuston } from '../../Commons/Templates/Form/Input';
 import ContentHeader from '../../Commons/Templates/Form/ContentHeader';
 import Content from '../../Commons/Templates/Form/Content';
@@ -13,9 +11,8 @@ import Main from '../../Commons/Templates/Main/Main';
 import Layout from '../../Commons/Templates/Layout/Layout';
 import { reservationAction } from "../../Actions";
 import { roomAction } from "../../Actions";
-import { required, minLength3, maxLength100 }
+import { required, minLength3, maxLength100, dateInitial }
     from '../../Commons/Templates/Form/ValidatorInFieldLevel';
-import { createNumberMask, createTextMask, create } from 'redux-form-input-masks';
 import Selector from '../../Commons/Templates/Checkbox/Selector';
 
 const headerProps = {
@@ -112,7 +109,7 @@ class AddReservation extends Component {
                                             type="datetime-local"
                                             placeholder="Informe a Data e Hora de Início"
                                             label='Data e Hora de Inicio'
-                                            validate={[required]}
+                                            validate={[required, dateInitial]}
                                         />
                                     </div>
                                     <div className="input-field col s12">

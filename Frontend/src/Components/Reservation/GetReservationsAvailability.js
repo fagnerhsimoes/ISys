@@ -11,9 +11,6 @@ import { reservationAction } from "../../Actions";
 import { required }
     from '../../Commons/Templates/Form/ValidatorInFieldLevel';
 
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-
 
 const headerProps = {
     title: 'Consultar Disponibilidade de Reservas de Salas',
@@ -27,7 +24,8 @@ class GetReservationsAvailability extends Component {
 
     handleClick(values) {
         const { dispatch } = this.props;
-        dispatch(reservationAction.getAvailability(values, this.props.history));
+        dispatch(reservationAction.getAvailability(values));
+        dispatch(reservationAction.getNotAvailability(values, this.props.history));
     }
 
 

@@ -13,9 +13,8 @@ using ISys.Services.Api.Configurations;
 using MediatR;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-
-
-
+using System.Security.Policy;
+using Swashbuckle.Swagger;
 
 namespace ISys.Services.Api
 {
@@ -32,6 +31,7 @@ namespace ISys.Services.Api
             services.AddIdentityConfiguration(Configuration);
             services.AddStoreConfigurations(Configuration);
             services.AddEventStoreConfiguration(Configuration);
+            services.AddSwaggerConfiguration();
 
 
             services.AddCors();
@@ -111,6 +111,8 @@ namespace ISys.Services.Api
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwaggerSetup();
         }
 
         private static void RegisterServices(IServiceCollection services)

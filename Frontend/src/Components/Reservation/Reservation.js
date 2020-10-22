@@ -70,12 +70,6 @@ class Reservation extends Component {
                                     href="/add-reservation">
                                     Nova Reserva
 					        	</Button>
-
-                                <Button class="btn btn-primary"
-                                    component='a'
-                                    href="/getreservationsavailability">
-                                    Disponibilidade
-					        	</Button>
                             </Row>
                         </div>
                         <Main>

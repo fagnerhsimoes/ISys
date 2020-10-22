@@ -52,8 +52,9 @@ const Validator = require("validator");
     export const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined
     
 
-    export const tooOld = value =>
-    value && value > 65 ? 'You might be too old for this' : undefined
+    export const dateInitial = value => value && value < new Date() ? 'Data e Hora de Início não pode ser anterior a Data e Hora atual.' : undefined
+
+    export const tooOld = value => value && value > 65 ? 'You might be too old for this' : undefined
     
     export const aol = value =>
     value && /.+@aol\.com/.test(value) ?

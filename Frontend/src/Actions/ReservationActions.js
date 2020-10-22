@@ -1,4 +1,4 @@
-import { FETECHED_ALL_RESERVATION,FETECHED_ALL_ROOM_AVAILABILITY, HANDLE_ON_CHANGE, RESERVATION_DETAIL,
+import { FETECHED_ALL_RESERVATION,FETECHED_ALL_ROOM_AVAILABILITY,FETECHED_ALL_ROOM_NOT_AVAILABILITY, HANDLE_ON_CHANGE, RESERVATION_DETAIL,
     USER_UPDATED, USER_CREATED_SUCCESSFULLY, DELETED_RESERVATION_DETAILS
 } from "./Types";
 
@@ -13,6 +13,7 @@ export const reservationAction = {
     getReservation,
     getReservationById,
     getAvailability,
+    getNotAvailability,
     onChangeProps,
     editReservationInfo,
     createReservation,
@@ -34,14 +35,27 @@ function getReservation(){
 }
 
 
-function getAvailability(payload, history){
+function getAvailability(payload){
     console.log(payload);
     return async dispatch => {
-        let apiEndpoint = baseUrlCore + '/v1/room/availability';
+        let apiEndpoint = baseUrlCore + '/v1/room/availability/true';
         await userService.post(apiEndpoint, payload)
         .then((response)=>{
             console.log(response);
             dispatch(changeAvailabilityList(response.data.data));
+            //history.push('/reservationsavailability');
+        }) 
+    }
+}
+
+function getNotAvailability(payload, history){
+    console.log(payload);
+    return async dispatch => {
+        let apiEndpoint = baseUrlCore + '/v1/room/availability/false';
+        await userService.post(apiEndpoint, payload)
+        .then((response)=>{
+            console.log(response);
+            dispatch(changeNotAvailabilityList(response.data.data));
             history.push('/reservationsavailability');
         }) 
     }
@@ -113,6 +127,13 @@ export function changeAvailabilityList(availability){
     return{
         type: FETECHED_ALL_ROOM_AVAILABILITY,
         availability: availability
+    }
+}
+
+export function changeNotAvailabilityList(notavailability){
+    return{
+        type: FETECHED_ALL_ROOM_NOT_AVAILABILITY,
+        notavailability: notavailability
     }
 }
 

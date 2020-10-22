@@ -17,8 +17,12 @@ namespace ISys.Domain.Validations
         protected void ValidateDateInitial()
         {
             RuleFor(c => c.DateInitial)
-                .NotEmpty().WithMessage("Por Favor, Informe a Data e Hora Inicial");
+                .NotEmpty().WithMessage("Por Favor, Informe a Data e Hora Inicial")
+                .Must(date => date > DateTime.Now).WithMessage("A Data de Início não pode ser anterior a Data e Hora Atual");
         }
+
+
+
 
         protected void ValidateDateFinal()
         {
