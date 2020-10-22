@@ -11,7 +11,7 @@ O objetivo deste projeto é implementar as tecnologias mais utilizadas e aplicar
 - ### Para criar a Instância do Servidor de Banco de Dados:
  - #### Se você tiver o Docker instalado localmente na maquina pode criar uma instancia de servidor nele.
     * Com o Docker em execução, executar o seguinte comando para criar o Banco de Dados:
-    * *docker run -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=135790@Big' -p 1433:1433 --name=SqlServer -d microsoft/mssql-server-linux*
+    * - *docker run -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=135790@Big' -p 1433:1433 --name=SqlServer -d microsoft/mssql-server-linux*
      * Obs. Criando o servidor localmente não será necessário alterar o caminho do Banco nos arquivos de configuração do projeto.
  - #### Se você preferir usar outro servidor.
     * Alterar a string de conexão nos arquivos de configurações(appsettings.json) nos seguintes projetos:
