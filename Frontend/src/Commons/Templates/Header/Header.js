@@ -98,10 +98,10 @@ export default function () {
       <AppBar className='main-header' >
         <div className={classes.toolbar}>
           <a href='/' className='logo'>
-            <span className='logo-mini'><b>My</b>M</span>
+            <span className='logo-mini'>Isys</span>
             <span className='logo-lg'>
-                <i className='fa fa-money'></i>
-                <b> My</b> ISys
+                <i className='fa fa-clock-o'></i>
+                <b> ISYS</b>
             </span>        
           </a>
           <Toolbar className='navbar navbar-static-top'>

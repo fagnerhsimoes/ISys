@@ -13,7 +13,7 @@ import { required }
 
 
 const headerProps = {
-    title: 'Consultar Disponibilidade de Reservas de Salas',
+    title: 'Consultar Disponibilidade de Salas',
 }
 
 class GetReservationsAvailability extends Component {
@@ -28,28 +28,15 @@ class GetReservationsAvailability extends Component {
         dispatch(reservationAction.getNotAvailability(values, this.props.history));
     }
 
-
     render() {
         const { pristine, submitting, handleSubmit, reset } = this.props
         console.log(this.props.reservation);
-
-        function InsertText(props) {
-            headerProps.title = 'Consultar Reservas de Salas.';
-            return '';
-        }
-
-        function SegHeader() {
-            return <InsertText />;
-        }
 
         return (
             <div>
                 <Layout />
                 <div className='content-wrapper'>
                     <ContentHeader {...headerProps} />
-                    <div role='form' className='reservationform'>
-                        <SegHeader />
-                    </div>
                     <Content>
                         <Main>
                             <form onSubmit={handleSubmit(v => this.handleClick(v))}>

@@ -11,6 +11,7 @@ import Main from '../../Commons/Templates/Main/Main';
 import Layout from '../../Commons/Templates/Layout/Layout';
 import { reservationAction } from "../../Actions";
 import { roomAction } from "../../Actions";
+import  { Alert }           from "../Alert/Alert";
 import { required, minLength3, maxLength100, dateInitial }
     from '../../Commons/Templates/Form/ValidatorInFieldLevel';
 import Selector from '../../Commons/Templates/Checkbox/Selector';
@@ -30,7 +31,7 @@ class AddReservation extends Component {
         }
     }
 
- 
+
     handleChange = name => event => {
         this.setState({ [name]: event.target.value, });
     };
@@ -55,12 +56,12 @@ class AddReservation extends Component {
         console.log(this.props.reservation);
 
         function InsertText(props) {
-            headerProps.title = 'Inserir uma Reserva de Sala.';
+            headerProps.title = 'Inserir uma Reserva de Sala';
             return '';
         }
 
         function EditText(props) {
-            headerProps.title = 'Editar a Reserva da Sala.';
+            headerProps.title = 'Editar a Reserva da Sala';
             return '';
         }
 
@@ -155,7 +156,7 @@ class AddReservation extends Component {
 
 AddReservation.propTypes = {
     reservation: PropTypes.object.isRequired,
-    room       : PropTypes.object.isRequired,
+    room: PropTypes.object.isRequired,
 };
 
 AddReservation = reduxForm({ form: 'AddReservationForm', touchOnBlur: false, enableReinitialize: true, destroyOnUnmount: true })(AddReservation)

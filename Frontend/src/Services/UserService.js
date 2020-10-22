@@ -30,11 +30,9 @@ function getPay(apiEndpoint, payload){
 
 function post(apiEndpoint, payload){
     return axios.post(apiEndpoint, payload)
-    .then((response)=>{
-        return response;
-    }).catch((err)=>{
-        console.log(err);
-    })
+    .then((response)=> { return response;})
+    .catch((err)    => { return err;})
+    .catch((err)    => { console.log(err.response.data);});
 }
 
 function put(apiEndpoint, payload){

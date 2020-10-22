@@ -12,11 +12,11 @@ export const registerUser = (userData, history) => dispatch => {
     .post(apiEndpoint, userData)
     .then((res) => {
         history.push("/");
-        //dispatch(alertActions.success("Registro efetuado com sucesso"));
+        dispatch(alertActions.success("Registro efetuado com sucesso"));
     })
     .catch(err => handleError(err))
     .catch(err => dispatch(alertActions.error(err)))
-    .catch(err => dispatch(failure(err.message)));
+    //.catch(err => dispatch(failure(err)));
 };
 
 
@@ -35,7 +35,9 @@ export const loginUser = userData => dispatch => {
     })
     .catch(err => handleError(err))
     .catch(err => dispatch(alertActions.error(err)))
-    .catch(err => dispatch(failure(err)));
+    //.catch(err => dispatch(failure(err)));
+
+
 };
 
 
@@ -65,5 +67,5 @@ function failure(error) {
 }
 
 function handleError(error) {
-    return Promise.reject(error && error.message);
+    return Promise.reject(error && error.response && error.response.data || error.message);
 }

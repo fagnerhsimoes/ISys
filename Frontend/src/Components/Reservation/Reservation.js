@@ -18,7 +18,7 @@ import moment from 'moment';
 import 'moment/locale/pt-br';
 
 const headerProps = {
-    title: 'Lista de Reservas.',
+    title: 'Lista de Reservas da Sala',
 }
 
 class Reservation extends Component {

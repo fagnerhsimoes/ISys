@@ -55,14 +55,6 @@ class Login extends Component {
 
 
   handleClick(values) {
-
-    //Validação especifica
-    /*if(values.email !== 'fagnerhsimoes22@gmail.com.br'){
-      throw new SubmissionError({
-        email: 'O email deve ser fagnerhsimoes22@gmail.com.br'
-      })
-    }*/
-
     this.props.loginUser(values); 
   }
 
@@ -105,7 +97,6 @@ class Login extends Component {
                             <Grid cols="1">
                                 <button type="submit"
                                         class="btn btn-primary"
-                                       // className="BtnSave"
                                         disabled={pristine || submitting}>
                                         Entrar
                                 </button>

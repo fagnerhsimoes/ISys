@@ -9,30 +9,12 @@ import ContentHeader from '../../Commons/Templates/Form/ContentHeader';
 import Content from '../../Commons/Templates/Form/Content';
 import 'moment/locale/pt-br';
 
-const headerProps = {
-    title: 'Lista de Reservas.',
-}
-
 class ReservationsAvailability extends Component {
-    handleChange = event => {
-        this.setState({
-            anchor: event.target.value,
-        });
-    };
-
-
-    handleClick = (event, id) => {
-        console.log(id);
-        const { dispatch } = this.props;
-        dispatch(reservationAction.deleteReservationById(id))
-    };
-
     render() {
-        const { availability } = this.props.availability;
+        const { availability }    = this.props.availability;
         const { notavailability } = this.props.notavailability;
 
         return (
-
             <div >
                 <Layout />
                 <div className='content-wrapper'>

@@ -4,16 +4,16 @@ import MenuTree from './MenuTree';
 
 export default props => (
     <ul className='sidebar-menu'>
-        <MenuItem path='/' label='Inicio' icon='dashboard' />
+        <MenuItem path='/' label='Inicio' icon='home' />
         <MenuTree label='Cadastro' icon='edit'>
             <MenuItem path='room'
-                label='Sala' icon='usd' />
+                label='Sala' icon='building' />
         </MenuTree>
-        <MenuTree label='Reserva' icon='edit'>
+        <MenuTree label='Agendamento' icon='tag'>
         <MenuItem path='reservation'
-                label='Nova Reserva de Sala' icon='usd' />
+                label='Reserva de Sala' icon='clock-o' />
             <MenuItem path='getreservationsavailability'
-                label='Reservas de Salas' icon='usd' />
+                label='Disponibilidade de Sala' icon='calendar' />
         </MenuTree>
     </ul>
 )

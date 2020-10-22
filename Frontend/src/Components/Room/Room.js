@@ -16,7 +16,7 @@ import Content from '../../Commons/Templates/Form/Content';
 import Row from '../../Commons/Templates/Form/Row';
 
 const headerProps = {
-    title: 'Lista de Salas Cadastradas.',
+    title: 'Lista de Salas Cadastradas',
 }
 
 class Room extends Component {

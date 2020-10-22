@@ -50,12 +50,12 @@ class AddRoom extends Component {
     console.log(this.props.room);
 
     function InsertText(props) {
-      headerProps.title = 'Inserir uma Sala.';
+      headerProps.title = 'Inserir uma Sala';
       return '';
     }
 
     function EditText(props) {
-      headerProps.title = 'Editar a Sala.';
+      headerProps.title = 'Editar a Sala';
       return '';
     }
 

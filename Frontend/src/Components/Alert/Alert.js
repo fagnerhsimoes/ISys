@@ -22,6 +22,13 @@ class Alert extends Component {
         //limpar();
         }
 
+    componentDidUpdate( ) { 
+        this.props.alert.message  && setTimeout(() => {
+            this.props.dispatch(alertActions.clear()); 
+    }, 5000 )}
+
+
+
     render() {
         const { alert } = this.props;
         return (
