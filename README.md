@@ -35,16 +35,16 @@ Além disso, você pode executar o Projeto ISys no Visual Studio Code (Windows, 
 Para saber mais sobre como configurar seu ambiente, visite o Guia de download do Microsoft .NET
 
 - ### Executando a Aplicação Backend:
- - Efetuar um Build.
- - No visual Studio, com a solução do projeto do Backend aberto, definir o projeto "ISys.Services.Api" como projeto de inicialização.
- - No Visual Studio, com a solução do projeto do Backend aberto, selecionar para executar na opção de self-host(ISys.Services.Api).
- - Executar o projeto.
+  - Efetuar um Build.
+  - No visual Studio, com a solução do projeto do Backend aberto, definir o projeto "ISys.Services.Api" como projeto de inicialização.
+  - No Visual Studio, com a solução do projeto do Backend aberto, selecionar para executar na opção de self-host(ISys.Services.Api).
+  - Executar o projeto.
 - ### Executando a Aplicação Frontend:
- - No programa de Linha de Comando de Preferência ou no VS CODE.
- - Abrir a pasta do projeto "Frontend".
- - Executar o comando "npm install".
- - Executar o comando "yarn Install".
- - Executar o comando "yarn Start".
+  - No programa de Linha de Comando de Preferência ou no VS CODE.
+  - Abrir a pasta do projeto "Frontend".
+  - Executar o comando "npm install".
+  - Executar o comando "yarn Install".
+  - Executar o comando "yarn Start".
 
 ## Tecnologias implementadas:
 
