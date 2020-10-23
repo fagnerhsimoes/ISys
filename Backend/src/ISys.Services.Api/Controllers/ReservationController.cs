@@ -88,7 +88,11 @@ namespace ISys.Services.Api.Controllers
                     conflicts.Add("Sala reservada no período de " + horaInicial + " até as " + horaFinal + ".");
                 }
 
-                return BadRequest("Não foi possivel realizar a reserva! \n" + string.Join("\n", conflicts));
+                return BadRequest(new ResultViewModel
+                {
+                    success = false,
+                    errors = "Não foi possivel realizar a reserva! \n" + string.Join("\n", conflicts)
+                });
             }
 
             _ReservationAppService.Register(ReservationViewModel);

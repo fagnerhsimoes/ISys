@@ -76,7 +76,11 @@ namespace ISys.Services.Api.Controllers
         {
             if (_ReservationAppService.GetAllByRoom(id).Count() > 0)
             {
-                return BadRequest("Existe Reserva Agendada para esta Sala. Não será possível excluir a Sala.");
+                return BadRequest ( new ResultViewModel
+                {
+                    success = false,
+                    errors = "Existe Reserva Agendada para esta Sala. Não será possível excluir a Sala."
+                });
             }
 
             _RoomAppService.Remove(id);

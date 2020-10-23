@@ -65,5 +65,5 @@ function failure(error) {
 }
 
 function handleError(error) {
-    return Promise.reject(error && error.response && error.response.data || error.message);
+    return Promise.reject(error && error.response && error.response.data.errors || error.message);
 }

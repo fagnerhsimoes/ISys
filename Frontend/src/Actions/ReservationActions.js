@@ -22,7 +22,7 @@ export const reservationAction = {
 function getReservation(){
     return async dispatch => {
         let apiEndpoint = baseUrlCore + '/v1/reservation';
-        await userService.get(apiEndpoint)
+        await userService.get(apiEndpoint, dispatch)
         .then((response)=>{
             console.log(response);
             dispatch(changeReservationsList(response.data.data));
@@ -38,7 +38,7 @@ function getAvailability(payload){
     console.log(payload);
     return async dispatch => {
         let apiEndpoint = baseUrlCore + '/v1/room/availability/true';
-        await userService.post(apiEndpoint, payload)
+        await userService.post(apiEndpoint, payload, dispatch)
         .then((response)=>{
             console.log(response);
             dispatch(changeAvailabilityList(response.data.data));
@@ -50,7 +50,7 @@ function getNotAvailability(payload, history){
     console.log(payload);
     return async dispatch => {
         let apiEndpoint = baseUrlCore + '/v1/room/availability/false';
-        await userService.post(apiEndpoint, payload)
+        await userService.post(apiEndpoint, payload, dispatch)
         .then((response)=>{
             console.log(response);
             dispatch(changeNotAvailabilityList(response.data.data));
@@ -64,7 +64,7 @@ function getNotAvailability(payload, history){
 function createReservation(payload, history){
     return async dispatch => {
         let apiEndpoint = baseUrlCore + '/v1/reservation';
-        await userService.post(apiEndpoint, payload)
+        await userService.post(apiEndpoint, payload, dispatch)
         .then((response)=>{
             dispatch(createUserInfo());
             history.push('/reservation');
@@ -76,7 +76,7 @@ function createReservation(payload, history){
 function getReservationById(id){
     return async dispatch => {
         let apiEndpoint = baseUrlCore +'/v1/reservation/'+ id;
-        await userService.get(apiEndpoint)
+        await userService.get(apiEndpoint, dispatch)
         .then((response)=>{
             console.log(response);
             dispatch(editReservationsDetails(response.data.data));

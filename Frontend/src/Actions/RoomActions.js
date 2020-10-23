@@ -21,13 +21,10 @@ export const roomAction = {
 function getRoom(){
     return async dispatch => {
         let apiEndpoint = baseUrlCore + '/v1/room';
-        await userService.get(apiEndpoint)
+        await userService.get(apiEndpoint, dispatch)
         .then((response)=>{
             console.log(response);
             dispatch(changeRoomsList(response.data.data));
-        }).catch((err)=>{
-            console.log("Error");
-            console.log(err);
         })
     };
 }
@@ -35,7 +32,7 @@ function getRoom(){
 function createRoom(payload, history){
     return async dispatch => {
         let apiEndpoint = baseUrlCore + '/v1/room';
-        await userService.post(apiEndpoint, payload)
+        await userService.post(apiEndpoint, payload, dispatch)
         .then((response)=>{
             dispatch(createUserInfo());
             history.push('/room');
@@ -47,7 +44,7 @@ function createRoom(payload, history){
 function getRoomById(id){
     return async dispatch => {
         let apiEndpoint = baseUrlCore +'/v1/room/'+ id;
-        await userService.get(apiEndpoint)
+        await userService.get(apiEndpoint, dispatch)
         .then((response)=>{
             console.log(response);
             dispatch(editRoomsDetails(response.data.data));
@@ -64,7 +61,7 @@ function onChangeProps(props, event){
 function editRoomInfo(id, payload, history){
     return async dispatch => {
         let apiEndpoint = baseUrlCore + '/v1/room/'+ id;
-        await userService.put(apiEndpoint, payload)
+        await userService.put(apiEndpoint, payload, dispatch)
         .then((response)=>{
             dispatch(updatedUserInfo());
             history.push('/room');
@@ -76,7 +73,7 @@ function editRoomInfo(id, payload, history){
 function deleteRoomById(id){
     return async dispatch => {
         let apiEndpoint = baseUrlCore + '/v1/room/'+ id;
-        await userService.deleteDetail(apiEndpoint)
+        await userService.deleteDetail(apiEndpoint, dispatch)
         .then((response)=>{
             dispatch(deleteRoomsDetails());
             dispatch(roomAction.getRoom());

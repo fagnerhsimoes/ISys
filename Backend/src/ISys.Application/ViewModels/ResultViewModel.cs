@@ -6,9 +6,9 @@ namespace ISys.Application.ViewModels
 {
     public class ResultViewModel
     {
-        public bool Success { get; set; }
-        public string Message { get; set; }
-        public object Data { get; set; }
+        public bool   success { get; set; }
+        public string errors  { get; set; }
+        public object data    { get; set; }
     }
 }
 

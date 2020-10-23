@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using ISys.Application.ViewModels;
 using ISys.Domain.Core.Bus;
 using ISys.Domain.Core.Notifications;
 using ISys.Infra.CrossCutting.Identity.Models;
@@ -55,8 +56,12 @@ namespace ISys.Services.Api.Controllers
              var user = await _userManager.FindByEmailAsync(loginUser.Email);
              if (user == null)
              {
-                 return BadRequest("Usuário não encontrado");
-             }
+                return BadRequest(new ResultViewModel
+                {
+                    success = false,
+                    errors = "Usuário não encontrado."
+                });
+            }
 
              var result = await _signInManager.PasswordSignInAsync(loginUser.Email, loginUser.Password, false, true);
 
@@ -66,8 +71,12 @@ namespace ISys.Services.Api.Controllers
                  return await GerarJwt(loginUser.Email);
              }
 
-             return BadRequest("Senha incorreta");
-         }
+            return BadRequest(new ResultViewModel
+            {
+                success = false,
+                errors = "Senha incorreta."
+            });
+        }
 
         [AllowAnonymous]
         [HttpPost("v1/auth/register")]
@@ -82,7 +91,11 @@ namespace ISys.Services.Api.Controllers
             var HasUser = await _userManager.FindByEmailAsync(registerUser.Email);
             if (HasUser != null)
             {
-                return BadRequest("E-mail já cadastrado");
+                return BadRequest(new ResultViewModel
+                {
+                    success = false,
+                    errors = "E-mail já cadastrado."
+                });
             }
 
             var user = new ApplicationUser { UserName = registerUser.Email, Email = registerUser.Email };
