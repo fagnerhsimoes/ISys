@@ -2,18 +2,18 @@ import './Room.css';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom";
-import Grid from '../../Commons/Templates/Form/Grid';
+import Grid from '../../Commons/Form/Grid';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
-import IButton from '../../Commons/Templates/Form/IconButton';
+import IButton from '../../Commons/Form/IconButton';
 import Button from '@material-ui/core/Button';
-import Main from '../../Commons/Templates/Main/Main';
+import Main from '../../Commons/Main/Main';
 import { roomAction } from '../../Actions';
-import Layout from '../../Commons/Templates/Layout/Layout';
-import ContentHeader from '../../Commons/Templates/Form/ContentHeader';
-import Content from '../../Commons/Templates/Form/Content';
-import Row from '../../Commons/Templates/Form/Row';
+import Layout from '../../Commons/Layout/Layout';
+import ContentHeader from '../../Commons/Form/ContentHeader';
+import Content from '../../Commons/Form/Content';
+import Row from '../../Commons/Form/Row';
 
 const headerProps = {
     title: 'Lista de Salas Cadastradas',

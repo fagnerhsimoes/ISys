@@ -2,14 +2,14 @@ import './Reservation.css';
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { withRouter, Link } from "react-router-dom";
-import { InputCuston } from '../../Commons/Templates/Form/Input';
-import ContentHeader from '../../Commons/Templates/Form/ContentHeader';
-import Content from '../../Commons/Templates/Form/Content';
-import Main from '../../Commons/Templates/Main/Main';
-import Layout from '../../Commons/Templates/Layout/Layout';
+import { InputCuston } from '../../Commons/Form/Input';
+import ContentHeader from '../../Commons/Form/ContentHeader';
+import Content from '../../Commons/Form/Content';
+import Main from '../../Commons/Main/Main';
+import Layout from '../../Commons/Layout/Layout';
 import { reservationAction } from "../../Actions";
 import { required }
-    from '../../Commons/Templates/Form/ValidatorInFieldLevel';
+    from '../../Commons/Form/ValidatorInFieldLevel';
 
 
 const headerProps = {

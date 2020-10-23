@@ -4,15 +4,14 @@ import { reduxForm, Field } from 'redux-form';
 import { Link, withRouter } from "react-router-dom";
 import { connect }          from "react-redux";
 import PropTypes            from "prop-types";
-import Button     from '@material-ui/core/Button';
-import Row from '../../Commons/Templates/Form/Row';
-import Grid from '../../Commons/Templates/Form/Grid';
-import { InputIcon } from '../../Commons/Templates/Form/InputIcon';
-import Logo       from '../../Commons/Templates/Logo/Logo';
+import Row from '../../Commons/Form/Row';
+import Grid from '../../Commons/Form/Grid';
+import { InputIcon } from '../../Commons/Form/InputIcon';
+import Logo       from '../../Commons/Logo/Logo';
 import {Alert }               from "../Alert/Alert";
 import { registerUser }     from "../../Actions/AuthActions";
 import { required ,minLength6, maxLength30,isEmail, mathAnother, passwordIsValid}  
-    from '../../Commons/Templates/Form/ValidatorInFieldLevel';
+    from '../../Commons/Form/ValidatorInFieldLevel';
 
 
 

@@ -4,15 +4,14 @@ import { reduxForm, Field } from 'redux-form';
 import { Link, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import { InputCuston } from '../../Commons/Templates/Form/Input';
-import ContentHeader from '../../Commons/Templates/Form/ContentHeader';
-import Content from '../../Commons/Templates/Form/Content';
-import Main from '../../Commons/Templates/Main/Main';
-import Layout from '../../Commons/Templates/Layout/Layout';
+import { InputCuston } from '../../Commons/Form/Input';
+import ContentHeader from '../../Commons/Form/ContentHeader';
+import Content from '../../Commons/Form/Content';
+import Main from '../../Commons/Main/Main';
+import Layout from '../../Commons/Layout/Layout';
 import { roomAction } from "../../Actions";
 import { required, minLength3, maxLength100 }
-  from '../../Commons/Templates/Form/ValidatorInFieldLevel';
+  from '../../Commons/Form/ValidatorInFieldLevel';
 
 const headerProps = {
   title: 'Inserir uma Sala',

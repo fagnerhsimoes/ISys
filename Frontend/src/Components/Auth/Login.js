@@ -3,21 +3,19 @@ import React, { Component } from "react";
 import { reduxForm, Field } from 'redux-form';
 import PropTypes            from "prop-types";
 import { connect }          from "react-redux";
-import Button               from '@material-ui/core/Button';
-import Row                  from   '../../Commons/Templates/Form/Row';
-import Grid                 from '../../Commons/Templates/Form/Grid';
-import { InputIcon }        from '../../Commons/Templates/Form/InputIcon';
-import Logo                 from '../../Commons/Templates/Logo/Logo';
+import Row                  from   '../../Commons/Form/Row';
+import Grid                 from '../../Commons/Form/Grid';
+import { InputIcon }        from '../../Commons/Form/InputIcon';
+import Logo                 from '../../Commons/Logo/Logo';
 import { loginUser }        from "../../Actions/AuthActions";
 import  { Alert }           from "../Alert/Alert";
 import { Link, withRouter } from "react-router-dom";
 
-import {SubmissionError} from 'redux-form';
 import { required, 
          minLength6, 
          maxLength30,
          isEmail}  
-from '../../Commons/Templates/Form/ValidatorInFieldLevel';
+from '../../Commons/Form/ValidatorInFieldLevel';
 
 
 
