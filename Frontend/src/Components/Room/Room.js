@@ -49,18 +49,7 @@ class Room extends Component {
                     <Content>
                         <div className='roomform'>
                             <Row>
-                                <Grid cols='12 9 10'>
-                                    <input id='description' className='form-control'
-                                        placeholder='Pesquisar uma Sala...'
-                                        onChange={this.props.changeDescription}
-                                        onKeyUp={this.keyHandler}
-                                        value={this.props.description} />
-                                </Grid>
 
-                                <Grid cols='12 3 2'>
-                                    <IButton style='info' icon='search'></IButton>
-                                    <IButton style='default' icon='close' ></IButton>
-                                </Grid>
                             </Row>
                             <Row>
                                 <Button class="btn btn-primary"

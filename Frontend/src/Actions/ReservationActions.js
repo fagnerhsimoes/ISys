@@ -2,11 +2,9 @@ import { FETECHED_ALL_RESERVATION,FETECHED_ALL_ROOM_AVAILABILITY,FETECHED_ALL_RO
     USER_UPDATED, USER_CREATED_SUCCESSFULLY, DELETED_RESERVATION_DETAILS
 } from "./Types";
 
-import moment from 'moment';
 import { reset } from 'redux-form'
 import { userService } from '../Services/Index';
 import { baseUrlCore } from '../Config/index';
-import { alertActions } from "../Actions/AlertActions";
 
 
 
@@ -44,7 +42,6 @@ function getAvailability(payload){
         .then((response)=>{
             console.log(response);
             dispatch(changeAvailabilityList(response.data.data));
-            //history.push('/reservationsavailability');
         }) 
     }
 }
@@ -68,8 +65,6 @@ function createReservation(payload, history){
     return async dispatch => {
         let apiEndpoint = baseUrlCore + '/v1/reservation';
         await userService.post(apiEndpoint, payload)
-        .then(response => handleError(response))
-        .then(response => dispatch(alertActions.error(response)))
         .then((response)=>{
             dispatch(createUserInfo());
             history.push('/reservation');
@@ -176,9 +171,4 @@ export function deleteReservationsDetails(){
     return{
         type: DELETED_RESERVATION_DETAILS
     }
-}
-
-
-function handleError(error) {
-    return Promise.reject(error && error.response && error.response.data || error.message);
 }

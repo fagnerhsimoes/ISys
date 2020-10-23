@@ -25,7 +25,7 @@ class Alert extends Component {
     componentDidUpdate( ) { 
         this.props.alert.message  && setTimeout(() => {
             this.props.dispatch(alertActions.clear()); 
-    }, 5000 )}
+    }, 10000 )}
 
 
 

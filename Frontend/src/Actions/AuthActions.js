@@ -16,7 +16,6 @@ export const registerUser = (userData, history) => dispatch => {
     })
     .catch(err => handleError(err))
     .catch(err => dispatch(alertActions.error(err)))
-    //.catch(err => dispatch(failure(err)));
 };
 
 
@@ -35,7 +34,6 @@ export const loginUser = userData => dispatch => {
     })
     .catch(err => handleError(err))
     .catch(err => dispatch(alertActions.error(err)))
-    //.catch(err => dispatch(failure(err)));
 
 
 };
