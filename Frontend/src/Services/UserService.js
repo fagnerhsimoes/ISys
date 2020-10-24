@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { alertActions } from "../Actions/AlertActions";
+import { dialogActions } from "../Actions/DialogActions";
 
 export const userService = {
     get,
@@ -19,7 +20,7 @@ function post(apiEndpoint, payload, dispatch){
     return axios.post(apiEndpoint, payload)
     .then((response) => { return response;})
     .catch((err) => (handleError(err)))
-    .catch(err => dispatch(alertActions.error(err)))
+    .catch(err => dispatch(dialogActions.error(err)))
 }
 
 function put(apiEndpoint, payload, dispatch){
