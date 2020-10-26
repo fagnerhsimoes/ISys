@@ -1,4 +1,4 @@
-import './Commons/Templates/Dependencies/Dependencies';
+import './Commons/Dependencies/Dependencies';
 import './index.css';
 
 import React    from 'react'    ;

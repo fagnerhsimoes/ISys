@@ -1,20 +1,19 @@
 import './Reservation.css';
 import React, { Component } from 'react';
-import { reduxForm, Field, formValueSelector } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
 import { withRouter, Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { InputCuston } from '../../Commons/Templates/Form/Input';
-import ContentHeader from '../../Commons/Templates/Form/ContentHeader';
-import Content from '../../Commons/Templates/Form/Content';
-import Main from '../../Commons/Templates/Main/Main';
-import Layout from '../../Commons/Templates/Layout/Layout';
+import { InputCuston } from '../../Commons/Form/Input';
+import ContentHeader from '../../Commons/Form/ContentHeader';
+import Content from '../../Commons/Form/Content';
+import Main from '../../Commons/Main/Main';
+import Layout from '../../Commons/Layout/Layout';
 import { reservationAction } from "../../Actions";
 import { roomAction } from "../../Actions";
-import  { Alert }           from "../Alert/Alert";
 import { required, minLength3, maxLength100, dateInitial }
-    from '../../Commons/Templates/Form/ValidatorInFieldLevel';
-import Selector from '../../Commons/Templates/Checkbox/Selector';
+    from '../../Commons/Form/ValidatorInFieldLevel';
+import Selector from '../../Commons/Checkbox/Selector';
 
 const headerProps = {
     title: 'Inserir uma Reserva de Sala',

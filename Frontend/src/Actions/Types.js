@@ -9,6 +9,11 @@ export const ALERT_SUCCESS                       = 'ALERT_SUCCESS';
 export const ALERT_ERROR                         = 'ALERT_ERROR';
 export const ALERT_CLEAR                         = 'ALERT_CLEAR';
 
+//DIALOG
+export const DIALOG_SUCCESS                      = 'DIALOG_SUCCESS';
+export const DIALOG_ERROR                        = 'DIALOG_ERROR';
+export const DIALOG_CLEAR                        = 'DIALOG_CLEAR';
+
 //AUTH/USER
 export const USER_LOADING                        = 'USER_LOADING';
 export const SET_CURRENT_USER                    = 'SET_CURRENT_USER';

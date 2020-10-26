@@ -2,11 +2,10 @@ import './Reservation.css';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom";
-import Main from '../../Commons/Templates/Main/Main';
-import { reservationAction } from '../../Actions';
-import Layout from '../../Commons/Templates/Layout/Layout';
-import ContentHeader from '../../Commons/Templates/Form/ContentHeader';
-import Content from '../../Commons/Templates/Form/Content';
+import Main from '../../Commons/Main/Main';
+import Layout from '../../Commons/Layout/Layout';
+import ContentHeader from '../../Commons/Form/ContentHeader';
+import Content from '../../Commons/Form/Content';
 import 'moment/locale/pt-br';
 
 class ReservationsAvailability extends Component {

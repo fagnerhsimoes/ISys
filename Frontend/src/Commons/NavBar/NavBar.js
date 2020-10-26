@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import  PropTypes         from 'prop-types';
-import { logoutUser }    from "../../../Actions/AuthActions";
+import { logoutUser }    from "../../Actions/AuthActions";
 import { Glyphicon, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 

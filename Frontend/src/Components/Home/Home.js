@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import ContentHeader from '../../Commons/Templates/Form/ContentHeader';
-import Content from '../../Commons/Templates/Form/Content';
-import Row from  '../../Commons/Templates/Form/Row';
-import Layout from '../../Commons/Templates/Layout/Layout';
+import ContentHeader from '../../Commons/Form/ContentHeader';
+import Content from '../../Commons/Form/Content';
+import Row from  '../../Commons/Form/Row';
+import Layout from '../../Commons/Layout/Layout';
 
 class Home extends Component {
 
