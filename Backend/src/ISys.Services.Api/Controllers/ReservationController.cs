@@ -91,7 +91,7 @@ namespace ISys.Services.Api.Controllers
                 return BadRequest(new ResultViewModel
                 {
                     success = false,
-                    errors = "Não foi possivel realizar a reserva! \n" + string.Join("\n", conflicts)
+                    errors = "Não foi possivel realizar a reserva! <br/>" + string.Join("<br/>", conflicts)
                 });
             }
 
