@@ -53,6 +53,7 @@ function Dialog(props) {
             <Modal.Header closeButton id="contained-modal-title-vcenter">
                 Atenção
             </Modal.Header>
+            
             <Modal.Body>
                 {props.dialog.message}
             </Modal.Body>

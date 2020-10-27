@@ -1,0 +1,19 @@
+version: "3.7"
+services: 
+  sqlserver:
+    build:
+      "./Backend/db"
+    image: sqlserver
+    container_name: ContainerSqlServer
+    restart: always
+    ports: 
+     - "1433:1433"
+  api:
+    build:
+      "./Backend/src/ISys.Services.Api"
+    image: api
+    container_name: ContainerApi
+    restart: always
+    ports: 
+     - "5000:5000"
+

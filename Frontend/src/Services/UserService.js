@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { alertActions } from "../Actions/AlertActions";
 import { dialogActions } from "../Actions/DialogActions";
 
 export const userService = {
@@ -13,7 +12,7 @@ function get(apiEndpoint, dispatch){
     return axios.get(apiEndpoint)
     .then((response) => { return response;})
     .catch((err) => (handleError(err)))
-    .catch(err => dispatch(alertActions.error(err)))
+    .catch(err => dispatch(dialogActions.error(err)))
 }
 
 function post(apiEndpoint, payload, dispatch){
@@ -27,14 +26,14 @@ function put(apiEndpoint, payload, dispatch){
     return axios.put(apiEndpoint, payload)
     .then((response) => { return response;})
     .catch((err) => (handleError(err)))
-    .catch(err => dispatch(alertActions.error(err)))
+    .catch(err => dispatch(dialogActions.error(err)))
 }
 
 function deleteDetail(apiEndpoint, dispatch){
     return axios.delete(apiEndpoint)
     .then((response) => { return response;})
     .catch((err) => (handleError(err)))
-    .catch(err => dispatch(alertActions.error(err)))
+    .catch(err => dispatch(dialogActions.error(err)))
 }
 
 function handleError(error) {
