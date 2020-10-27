@@ -74,8 +74,8 @@ namespace ISys.Services.Api.Controllers
             if (roomIsReservation.Count() > 0)
             {
                 List<string> conflicts = new List<string>();
-                DateTime     horaInicial;
-                DateTime     horaFinal;
+                DateTime horaInicial;
+                DateTime horaFinal;
                 foreach (var reservation in roomIsReservation.OrderBy(p => p.DateInitial))
                 {
                     if (reservation.DateInitial > ReservationViewModel.DateInitial)

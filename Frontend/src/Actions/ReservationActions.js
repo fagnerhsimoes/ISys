@@ -93,7 +93,7 @@ function onChangeProps(props, event){
 function editReservationInfo(id, payload, history){
     return async dispatch => {
         let apiEndpoint = baseUrlCore + '/v1/reservation/'+ id;
-        await userService.put(apiEndpoint, payload)
+        await userService.put(apiEndpoint, payload, dispatch)
         .then((response)=>{
             dispatch(updatedUserInfo());
             history.push('/reservation');
@@ -105,7 +105,7 @@ function editReservationInfo(id, payload, history){
 function deleteReservationById(id){
     return async dispatch => {
         let apiEndpoint = baseUrlCore + '/v1/reservation/'+ id;
-        await userService.deleteDetail(apiEndpoint)
+        await userService.deleteDetail(apiEndpoint, dispatch)
         .then((response)=>{
             dispatch(deleteReservationsDetails());
             dispatch(reservationAction.getReservation());

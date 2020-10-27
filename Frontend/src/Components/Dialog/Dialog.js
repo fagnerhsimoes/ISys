@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Modal, Button } from 'react-bootstrap'
-import ContentHeader from '../../Commons/Form/ContentHeader';
+import { Modal } from 'react-bootstrap'
+import { dialogActions } from '../../Actions';
 
 
 function Dialog(props) {
     const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false);
+        props.dispatch(dialogActions.clear());
+    }
     const handleShow = () => setShow(true);
 
 
@@ -24,14 +27,14 @@ function Dialog(props) {
         title: 'Atenção',
     }
 
-    function ErrorTitle(props) {
-        headerProps.title = 'Erro';
-        return '';
+    function ErrorTitle() {
+        headerProps.title = 'Atenção';
+        return 'Atenção';
     }
 
-    function SucessTitle(props) {
+    function SucessTitle() {
         headerProps.title = 'Sucesso';
-        return '';
+        return 'Sucesso';
     }
 
     function SegTitle() {
@@ -44,21 +47,32 @@ function Dialog(props) {
 
     return (
         <Modal
+        {...props}
             show={show}
             onHide={handleClose}
             backdrop="static"
             keyboard={false}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            animation={false}
         >
 
-            <Modal.Header closeButton id="contained-modal-title-vcenter">
-                Atenção
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter" >
+                    <h3 >
+                        <SegTitle {...headerProps} />
+                    </h3>
+                </Modal.Title>
             </Modal.Header>
             
             <Modal.Body>
-                {props.dialog.message}
+                <p>
+                    {props.dialog.message}
+                </p>
             </Modal.Body>
             <Modal.Footer>
-                <button class="btn btn-primary" onClick={handleClose}>
+                <button class="btn btn-danger" onClick={handleClose}>
                     Fechar
               </button>
             </Modal.Footer>
@@ -68,7 +82,6 @@ function Dialog(props) {
 
     )
 }
-//}
 
 Dialog.propTypes = {
     limpar: PropTypes.func.isRequired,
