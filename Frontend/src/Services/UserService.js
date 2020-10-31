@@ -19,7 +19,7 @@ function get(apiEndpoint, dispatch){
 function post(apiEndpoint, payload, dispatch){
     return axios.post(apiEndpoint, payload)
     .then((response) => { return response;})
-    .then(response => dispatch(alertActions.success("Registro criado com sucesso")))
+    //.then(response => dispatch(alertActions.success("Registro criado com sucesso")))
     .catch((err) => (handleError(err)))
     .catch(err => dispatch(dialogActions.error(err)))
 }

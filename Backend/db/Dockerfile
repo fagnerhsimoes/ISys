@@ -1,3 +1,7 @@
-FROM mcr.microsoft.com/mssql/server:2019-latest
+FROM microsoft/mssql-server-linux
+EXPOSE 1433
 ENV MSSQL_SA_PASSWORD 135790@Big
 ENV ACCEPT_EULA Y 
+
+
+

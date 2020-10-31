@@ -19,23 +19,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.2 - CrossCutting", "5.2 -
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.1 - Data", "5.1 - Data", "{BA81740C-5C3A-418D-B644-BC9259F8F882}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISys.Infra.CrossCutting.Identity", "src\ISys.Infra.CrossCutting.Identity\ISys.Infra.CrossCutting.Identity.csproj", "{D0476D30-12A9-4356-9738-4BE59984364C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISys.Infra.CrossCutting.Identity", "src\ISys.Infra.CrossCutting.Identity\ISys.Infra.CrossCutting.Identity.csproj", "{D0476D30-12A9-4356-9738-4BE59984364C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISys.Infra.CrossCutting.Bus", "src\ISys.Infra.CrossCutting.Bus\ISys.Infra.CrossCutting.Bus.csproj", "{28B19989-9760-4FD7-A938-14EAB5F5B591}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISys.Infra.CrossCutting.Bus", "src\ISys.Infra.CrossCutting.Bus\ISys.Infra.CrossCutting.Bus.csproj", "{28B19989-9760-4FD7-A938-14EAB5F5B591}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISys.Infra.CrossCutting.Ioc", "src\ISys.Infra.CrossCutting.Ioc\ISys.Infra.CrossCutting.Ioc.csproj", "{38EB063D-F87A-4249-A880-DD77C60AECAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISys.Infra.CrossCutting.Ioc", "src\ISys.Infra.CrossCutting.Ioc\ISys.Infra.CrossCutting.Ioc.csproj", "{38EB063D-F87A-4249-A880-DD77C60AECAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISys.Infra.Data", "src\ISys.Infra.Data\ISys.Infra.Data.csproj", "{0FD304CE-8B91-43AF-93CC-D6295F7B74DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISys.Infra.Data", "src\ISys.Infra.Data\ISys.Infra.Data.csproj", "{0FD304CE-8B91-43AF-93CC-D6295F7B74DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISys.Domain", "src\ISys.Domain\ISys.Domain.csproj", "{001E1509-46C0-4852-B2D8-3526202B3348}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISys.Domain", "src\ISys.Domain\ISys.Domain.csproj", "{001E1509-46C0-4852-B2D8-3526202B3348}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISys.Domain.Core", "src\ISys.Domain.Core\ISys.Domain.Core.csproj", "{D8AD8F23-8734-4E79-9A98-40F950984B09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISys.Domain.Core", "src\ISys.Domain.Core\ISys.Domain.Core.csproj", "{D8AD8F23-8734-4E79-9A98-40F950984B09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISys.Application", "src\ISys.Application\ISys.Application.csproj", "{2645137E-E6A3-4810-B389-874A9270FE2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISys.Application", "src\ISys.Application\ISys.Application.csproj", "{2645137E-E6A3-4810-B389-874A9270FE2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISys.Services.Api", "src\ISys.Services.Api\ISys.Services.Api.csproj", "{AC2B4BFB-5601-4B98-949C-688BF9E25701}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISys.Services.Api", "src\ISys.Services.Api\ISys.Services.Api.csproj", "{AC2B4BFB-5601-4B98-949C-688BF9E25701}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISys.UI.Web", "src\ISys.UI.Web\ISys.UI.Web.csproj", "{067B7E7E-B148-4BC2-BDB7-4101CDA6B40C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISys.UI.Web", "src\ISys.UI.Web\ISys.UI.Web.csproj", "{067B7E7E-B148-4BC2-BDB7-4101CDA6B40C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
