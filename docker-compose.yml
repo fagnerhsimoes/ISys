@@ -23,12 +23,14 @@ services:
       - "8001:443"
   sqlserver:
     image: sqlserver
-    hostname: 'sqlserver'  
+    hostname: sqlserver  
     build:
       "./Backend/db"
     container_name: sqlserver
     networks:
       - dockersql-network
     restart: always
+    volumes:
+      - ./:/setup_scripts
     ports: 
       - "1433:1433"

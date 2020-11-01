@@ -85,7 +85,7 @@
         $(".viewbutton").on("click", function() {
             var RoomId = $(this).data('id');
             $.ajax({
-                url: "https://localhost:44352/Room-management/Room-history/" + RoomId,
+                url: "https://sqlserver:44352/Room-management/Room-history/" + RoomId,
                 //url: "http://ISysproject.azurewebsites.net/Room-management/Room-history/" + RoomId,
                 cache: false
             }).done(function(data) {

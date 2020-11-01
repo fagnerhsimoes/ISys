@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:55322",
+      "applicationUrl": "http://sqlserver:55322",
       "sslPort": 44352
     }
   },
@@ -18,7 +18,7 @@
     "ISys.UI.Web": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "applicationUrl": "https://sqlserver:5001;http://sqlserver:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
