@@ -5,6 +5,19 @@ networks:
     driver: bridge
 
 services: 
+  sqlserver:
+    image: sqlserver
+    hostname: sqlserver  
+    build:
+      "./Backend/db"
+    container_name: sqlserver
+    networks:
+      - dockersql-network
+    restart: always
+    volumes:
+      - ./:/setup_scripts
+    ports: 
+      - "1433:1433"
   isys.services.api:
     image: isys.services.api
     build:
@@ -20,17 +33,16 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development  
     ports:
       - "8000:80"
-      - "8001:443"
-  sqlserver:
-    image: sqlserver
-    hostname: sqlserver  
+  app:
+    image: app
     build:
-      "./Backend/db"
-    container_name: sqlserver
+      context: "./Frontend/"
+      dockerfile: DockerfileApp
+    container_name: app
     networks:
       - dockersql-network
     restart: always
-    volumes:
-      - ./:/setup_scripts
-    ports: 
-      - "1433:1433"
+    depends_on:
+      - isys.services.api
+    ports:
+      - "3000:3000"

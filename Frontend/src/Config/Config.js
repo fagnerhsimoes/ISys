@@ -1,3 +1,3 @@
 module.exports = {
-    baseUrlCore   : 'https://localhost:5001/api',
+    baseUrlCore   : 'http://localhost:8000/api',
 }
