@@ -4,8 +4,25 @@ O Projeto ISys é um projeto de teste escrito em .NET Core(Backend) e Javascript
 
 O objetivo deste projeto é implementar as tecnologias mais utilizadas e aplicar técnicas para melhor forma de desenvolver aplicações com .NET
 
+## Instruções para usar - Opção 1:
+ - Você precisará do Docker e docker-compose instalado na maquina.
+     
+- ### Para criar os Containers de Banco de Dados, Backend e Frontend:
+ - #### Com o Docker em execução.
+    * Em qualquer terminal de sua preferência, acessar a pasta Raiz dos Projetos: "ISys".
+    * Executar os seguintes comandos, onde será definido como será criado as imagens dos containers:
+     - * ```docker-compose build```
+    * Em seguida, executar o seguinte comando:
+     - * ```docker-compose up -d```
+    * Após estes passos, estarão criados os containers onde estarão rodando o banco de dados, Backend e Frontend.
+    
+- ### Executando a Aplicação Backend:
+  - Você poderá testar o Backend através de programas como insominia, postman e outros através da url: http://localhost:8000/api.
+- ### Executando a Aplicação Frontend:
+  - Você poderá testar o fronend através do seu navegador com a seguinte url: http://localhost:3000.
 
-## Instruções para usar:
+
+## Instruções para usar - Opção 2:
  - Você precisará do Visual Studio 2019 e do .NET Core SDK mais recentes.
  - O SDK e as ferramentas mais recentes podem ser baixados em [https://dot.net/core](https://dotnet.microsoft.com/download).
 - ### Para criar a Instância do Servidor de Banco de Dados:
