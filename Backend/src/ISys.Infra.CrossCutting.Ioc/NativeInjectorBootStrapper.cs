@@ -38,31 +38,41 @@ namespace ISys.Infra.CrossCutting.IoC
             services.AddSingleton<IAuthorizationHandler, ClaimsRequirementHandler>();
 
             // Application
-            services.AddScoped<IRoomAppService        , RoomAppService>();
-            services.AddScoped<IReservationAppService , ReservationAppService>();
+            services.AddScoped<IRoomAppService, RoomAppService>();
+            services.AddScoped<IReservationAppService, ReservationAppService>();
+            services.AddScoped<IParcelamentoAppService, ParcelamentoAppService>();
 
             // Domain - Events
-            services.AddScoped<INotificationHandler<DomainNotification>  , DomainNotificationHandler>();
-            services.AddScoped<INotificationHandler<RoomRegisteredEvent> , RoomEventHandler>();
-            services.AddScoped<INotificationHandler<RoomUpdatedEvent>    , RoomEventHandler>();
-            services.AddScoped<INotificationHandler<RoomRemovedEvent>    , RoomEventHandler>();
+            services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
+            services.AddScoped<INotificationHandler<RoomRegisteredEvent>, RoomEventHandler>();
+            services.AddScoped<INotificationHandler<RoomUpdatedEvent>, RoomEventHandler>();
+            services.AddScoped<INotificationHandler<RoomRemovedEvent>, RoomEventHandler>();
 
             services.AddScoped<INotificationHandler<ReservationRegisteredEvent>, ReservationEventHandler>();
-            services.AddScoped<INotificationHandler<ReservationUpdatedEvent>   , ReservationEventHandler>();
-            services.AddScoped<INotificationHandler<ReservationRemovedEvent>   , ReservationEventHandler>();
+            services.AddScoped<INotificationHandler<ReservationUpdatedEvent>, ReservationEventHandler>();
+            services.AddScoped<INotificationHandler<ReservationRemovedEvent>, ReservationEventHandler>();
+
+            services.AddScoped<INotificationHandler<ParcelamentoNewEvent>, ParcelamentoEventHandler>();
+            //services.AddScoped<INotificationHandler<ParcelamentoOpcoesEvent>, ParcelamentoEventHandler>();
+            //services.AddScoped<INotificationHandler<ParcelamentoParcelasEvent>, ParcelamentoEventHandler>();
 
             // Domain - Commands
             services.AddScoped<IRequestHandler<RegisterNewRoomCommand, bool>, RoomCommandHandler>();
-            services.AddScoped<IRequestHandler<UpdateRoomCommand     , bool>, RoomCommandHandler>();
-            services.AddScoped<IRequestHandler<RemoveRoomCommand     , bool>, RoomCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateRoomCommand, bool>, RoomCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveRoomCommand, bool>, RoomCommandHandler>();
 
             services.AddScoped<IRequestHandler<RegisterNewReservationCommand, bool>, ReservationCommandHandler>();
-            services.AddScoped<IRequestHandler<UpdateReservationCommand     , bool>, ReservationCommandHandler>();
-            services.AddScoped<IRequestHandler<RemoveReservationCommand     , bool>, ReservationCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateReservationCommand, bool>, ReservationCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveReservationCommand, bool>, ReservationCommandHandler>();
+
+            services.AddScoped<IRequestHandler<ParcelamentoNewCommand, bool>, ParcelamentoCommandHandler>();
+            services.AddScoped<IRequestHandler<ParcelamentoOpcoesCommand, bool>, ParcelamentoCommandHandler>();
+            services.AddScoped<IRequestHandler<ParcelamentoParcelasCommand, bool>, ParcelamentoCommandHandler>();
 
             // Infra - Data
-            services.AddScoped<IRoomRepository        , RoomRepository>();
-            services.AddScoped<IReservationRepository , ReservationRepository>();
+            services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<IReservationRepository, ReservationRepository>();
+            services.AddScoped<IParcelamentoRepository, ParcelamentoRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<StoreDbContext>();
 
