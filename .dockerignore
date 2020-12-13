@@ -1,0 +1,9 @@
+# Diretórios
+.vscode/
+.vs/
+.git/
+bin/
+obj/
+# Arquivos
+.gitignore
+Dockerfile

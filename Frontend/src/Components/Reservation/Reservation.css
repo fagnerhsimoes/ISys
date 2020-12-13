@@ -1,0 +1,40 @@
+.reservationform {
+    margin-left: -5px;
+    margin-right: 0px;
+    padding: 0px 0px 0x 0px;
+}
+
+.reservationform input {
+    margin-left: 2px;
+    margin-right: 0px;
+    padding: 0px 0px 0px 10px;
+}
+
+.reservationform a {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 19px;
+    width: 150px;
+    height: 34px;
+}
+
+.Btns  {
+    margin-top: 20px;
+    margin-left: -15px;
+    
+}
+
+.Btns a {
+    width: 150px;
+    height: 34px;  
+    margin-left: 15px;  
+}
+
+.Btns button {
+    width: 150px;
+    height: 34px;  
+    margin-left: 15px;  
+}
+
+
+

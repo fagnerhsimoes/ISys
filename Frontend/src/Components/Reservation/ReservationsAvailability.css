@@ -1,0 +1,28 @@
+.content-wrapper {
+    margin-bottom: -120px;
+    padding: 0px 0px 0x 0px;
+}
+
+.resultform {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px 0px 0x 0px;
+}
+
+
+.resultform .Btns  {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 60px;
+}
+
+.resultform .Btns a {
+    width: 150px;
+    height: 34px;  
+}
+
+
+.resultform table tbody tr td {
+    text-align: left;
+    vertical-align: initial;
+  }

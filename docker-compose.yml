@@ -1,0 +1,48 @@
+version: '3.7'
+
+networks: 
+  dockersql-network:
+    driver: bridge
+
+services: 
+  sqlserver:
+    image: sqlserver
+    hostname: sqlserver  
+    build:
+      "./Backend/db"
+    container_name: sqlserver
+    networks:
+      - dockersql-network
+    restart: always
+    volumes:
+      - ./:/setup_scripts
+    ports: 
+      - "1433:1433"
+  isys.services.api:
+    image: isys.services.api
+    build:
+      context: "./Backend/"
+      dockerfile: DockerfileApi
+    container_name: isys.services.api
+    networks:
+      - dockersql-network
+    restart: always
+    depends_on:
+      - sqlserver
+    environment:  
+      - ASPNETCORE_ENVIRONMENT=Development  
+    ports:
+      - "8000:80"
+  app:
+    image: app
+    build:
+      context: "./Frontend/"
+      dockerfile: DockerfileApp
+    container_name: app
+    networks:
+      - dockersql-network
+    restart: always
+    depends_on:
+      - isys.services.api
+    ports:
+      - "3000:3000"
